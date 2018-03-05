@@ -1,7 +1,11 @@
 # 20180305-FullStack-Night
 Repo for the PDX Code Guild Full Stack night course starting 03/05/2018
-
+---
 Class is held from **March 5, 2018 - June 25, 2018 M-F 6:00PM – 9:30PM**
+---
+
+### Holidays
+- Memorial Day: Monday, May 28
 
 ## Class Members
 
