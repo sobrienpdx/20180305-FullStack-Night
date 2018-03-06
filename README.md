@@ -14,20 +14,22 @@ M-F 6:00PM – 9:30PM
 
 - Eunika Wu
     - eunika@pdxcodeguild.com
+    - https://github.com/DED8IRD/20180305-FullStack-Night/
 
 ### Students
 
 - Juniper
+    - juniperlacey@gmail.com
+    - github.com/junifox/pdxcodefullstacknight20180305
 - Matteo
+    - matteokgouveia@gmail.com
+    - https://github.com/matteokg/PDXcodeguild-fullstack-night-03052018
 - Lade
+    - loladejr@yahoo.com
+    - https://github.com/loladejr/pdxcodeguild3-5-18LL/
+- Mckenzie
+    - mckenzie.hessel@gmail.com
+    - https://github.com/mckenziehessel/full_stack_night_030518
 - Jacob
-
-
-## Introductory Questions
-
-1. What is your prior experience in technology, programming or otherwise?
-
-2. What do you hope to gain from this course? How will it serve your long-term goals?
-
 
 
