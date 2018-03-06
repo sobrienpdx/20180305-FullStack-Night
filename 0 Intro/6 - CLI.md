@@ -18,7 +18,8 @@ In Linux, you can open a terminal with `Ctrl + Alt + T`.
     - `cd ..` will bring you into the parent directory
     - `cd` alone will return you to your 'home' directory
 - `mkdir <foldername>` create a new folder 
-- `rmdir <foldername>` removes a folder
+- `rmdir <foldername>` removes an empty folder
+- `rmdir -R NewFolder` removes a nonempty folder 
 - `rm <filename>` removes a file
 - `mv filename1 filename2` moves or renames a file
 - `cp filename1 filename2` copies a file
@@ -26,3 +27,27 @@ In Linux, you can open a terminal with `Ctrl + Alt + T`.
 - `tab` will attempt to autocomplete whatever you're typing
     - try `cd D` + `tab` + `tab`
 - `ctrl+c` kill currently running process
+------
+
+## Autocomplete
+
+A super-handy shortcut when working with the CLI is to tab to autocomplete. Try the following (on OS X):
+
+1. `cd ~/`
+1. `ls Doc` + [tab]
+
+The system should have autocompleted to `ls Documents/`. You can then hit [enter] to execute the command.
+
+If the system can’t resolve the autocomplete to a single string, tab a second time to get a list of the matching options. Try the following (on OS X):
+
+1. `cd ~/`
+1. `ls D` + [tab] + [tab]
+
+The system should have shown you `Desktop/   Documents/ Downloads/` as the possible options. Type `e` + [tab] and the system should autocomplete to `ls Desktop/`.
+
+------
+
+## Resources for futher reading:
+
+1. [A very, very gentle introduction to the Linux Command Line](http://chrisyoung.net/prose/blog/posts/2009-11-28-very-very-gentle-introduction-linux-command-line/)
+1. Django Girls [Introduction to the command-line interface](http://tutorial.djangogirls.org/en/intro_to_command_line/)
