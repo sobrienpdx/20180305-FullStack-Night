@@ -20,7 +20,7 @@ M-F 6:00PM – 9:30PM
 
 - Juniper
     - juniperlacey@gmail.com
-    - github.com/junifox/pdxcodefullstacknight20180305
+    - https://github.com/junifox/pdxcodefullstacknight20180305
 - Matteo
     - matteokgouveia@gmail.com
     - https://github.com/matteokg/PDXcodeguild-fullstack-night-03052018
@@ -31,5 +31,5 @@ M-F 6:00PM – 9:30PM
     - mckenzie.hessel@gmail.com
     - https://github.com/mckenziehessel/full_stack_night_030518
 - Jacob
-
+    - TBD
 
