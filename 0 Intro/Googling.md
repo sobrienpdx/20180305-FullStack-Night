@@ -25,15 +25,15 @@ Don't just google complete problems.
 Heres some handy Google tips and shortcuts:
 
 - Only search important words
-	- danny devito movies
+> danny devito movies
 - Search exact word or phrase (use quotes)
-	- "danny devito"
+> "danny devito"
 - Search any of these words (use capital OR)
-	- "danny devito" OR penguin movies
+> "danny devito" OR penguin movies
 - Match none of these words (use minus sign)
-	- "danny devito" -schwarzenegger
+> "danny devito" -schwarzenegger
 - Search between range (put 2 periods between the numbers and add a unit of measure)
-	- 10..35 lb, $0..$999, 1968-2001
+> 10..35 lb, $0..$999, 1968-2001
 
 ## StackOverflow
 
