@@ -14,6 +14,7 @@ M-F 6:00PM – 9:30PM
 
 - Eunika Wu
     - eunika@pdxcodeguild.com
+    - 724-472-8294
     - https://github.com/DED8IRD/20180305-FullStack-Night/
 
 ### Students
