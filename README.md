@@ -28,9 +28,3 @@ M-F 6:00PM – 9:30PM
 - Lade
     - loladejr@yahoo.com
     - https://github.com/loladejr/pdxcodeguild3-5-18LL/
-- Mckenzie
-    - mckenzie.hessel@gmail.com
-    - https://github.com/mckenziehessel/full_stack_night_030518
-- Jacob
-    - TBD
-
