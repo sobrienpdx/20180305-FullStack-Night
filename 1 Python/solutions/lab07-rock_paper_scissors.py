@@ -41,7 +41,7 @@ while True:
 
 	# Checks for valid input
 	while True:
-		play_again = input("Do you want to play again? ").lower()
+		play_again = input("Do you want to play again? ").lower().strip()
 		if play_again == 'yes' or play_again == 'no':
 			break
 
