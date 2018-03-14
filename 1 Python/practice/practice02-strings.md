@@ -15,9 +15,11 @@ def add(a, b):
 
 Get a string from the user, print out another string, doubling every letter.
 
-```
->>> Enter some text: hello
-hheelloo
+```python
+def double_letters(x):
+    ...
+double_letters('hello')
+hheelllloo
 ```
 
 ## Problem 2
