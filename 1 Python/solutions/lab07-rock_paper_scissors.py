@@ -8,8 +8,8 @@ rps = ['rock', 'paper', 'scissors'] #list of possible options
 
 while True:
 	while True:
-	    user_choice = input('rock, paper, or scissors? ').lower()
-	    if user_choice == 'rock' or user_choice == 'paper' or user_choice == 'scissors':
+	    user_choice = input('rock, paper, or scissors? ').lower().strip()
+	    if user_choice in rps:
 	        break
 
 	print('user choice: ' + user_choice)
