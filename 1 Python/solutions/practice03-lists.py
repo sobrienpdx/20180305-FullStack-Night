@@ -8,7 +8,7 @@ def random_element(a):
     return a[random.randint(0,len(a)-1)]
 
 fruits = ['apples', 'bananas', 'pears']
-random_element(fruits) could return 'apples', 'bananas' or 'pears'
+random_element(fruits) # could return 'apples', 'bananas' or 'pears'
 
 """Problem 2
 Write a REPL which asks users for a list of numbers, which they enter, until they say 'done'. Then print out the list.
