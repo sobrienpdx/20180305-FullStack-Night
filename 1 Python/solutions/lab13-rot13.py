@@ -57,6 +57,9 @@ def rotn_v2(text, n):
 print(rotn_v2('hello world!', 13))
 
 
+# convert each char to its ASCII numeric value using ord()
+# add offset to normalized ASCII value and wrap around when out of bounds
+# convert char back to character using chr()
 def rotn_v3(text, offset):
     output = ''
     for char in text:

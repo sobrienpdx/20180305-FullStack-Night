@@ -24,7 +24,7 @@ def REPL_list():
                 break
     print(num_list)
 
-# Test cases
+REPL_list()
 # Enter a number (or 'done'): 5
 # Enter a number (or 'done'): 34
 # Enter a number (or 'done'): 515
