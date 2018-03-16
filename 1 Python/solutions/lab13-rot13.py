@@ -7,8 +7,6 @@ lab 13: rot 13
 # find the index of that character in the alphabet
 # using that index, find the character in the rotated alphabet
 # append that character to the output string
-
-
 def rot13(text):
 
     alphabet         = 'abcdefghijklmnopqrstuvwxyz'
@@ -20,6 +18,20 @@ def rot13(text):
         output += alphabet_rotated[index]
     return output
 
+
+# solution using dictionary containing translations
+def rot13_v2(text):
+    translations = {'a':'n', 'b':'o', 'c':'p', 'd':'q', 'e':'r', 'f':'s', 'g':'t', 'h':'u', 'i':'v', 'j':'w', 'k':'x', 'l':'y', 'm':'z', 'n':'a', 'o':'b', 'p':'c', 'q':'d', 'r':'e', 's':'f', 't':'g', 'u':'h', 'v':'i', 'w':'j', 'x':'k', 'y':'l', 'z':'m', }
+    output = ''
+    for char in text:
+        char = char.lower()
+        if char in translations.keys():
+            output += translations[char]
+        else: # handle non-alphabet characters 
+            output += char 
+    return output
+
+print(rot13_v2('hello'))
 
 def rotn(text, n):
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
@@ -36,7 +48,7 @@ def rotn(text, n):
         output += alphabet[index]
     return output
 
-# print(rotn('hello', 2))
+print(rotn('hello', 2))
 
 
 # add support for non-letter characters
