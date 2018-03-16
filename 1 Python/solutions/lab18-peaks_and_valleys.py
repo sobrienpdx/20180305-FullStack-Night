@@ -10,6 +10,8 @@ def peaks(heights):
     returns the indices of peaks
     """
     peaks = []
+    # because we are comparing three items at once, 
+    # we don't include the first and last indices
     for i in range(1,len(heights)-1):
         left = heights[i-1]
         middle = heights[i]
