@@ -38,3 +38,15 @@ if __name__ == '__main__':
 	print(peaks(data)) 				# → [6, 14]
 	print(valleys(data)) 			# → [9, 17]
 	print(peaks_and_valleys(data))	# → [6, 9, 14, 17]
+	data = [1, 1, 1, 1, 1]
+	print(peaks(data)) 				# → [] empty list
+	print(valleys(data)) 			# → []
+	print(peaks_and_valleys(data))	# → []
+	data = [3, 2, 1, 2, 3]
+	print(peaks(data)) 				# → [] empty list
+	print(valleys(data)) 			# → [2]
+	print(peaks_and_valleys(data))	# → [2]	
+	data = [1, 2, 3, 2, 1]
+	print(peaks(data)) 				# → [2] 
+	print(valleys(data)) 			# → []
+	print(peaks_and_valleys(data))	# → [2]	
