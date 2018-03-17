@@ -6,7 +6,7 @@ PyAudio = pyaudio.PyAudio  # initialize pyaudio
 # See https://en.wikipedia.org/wiki/Bit_rate#Audio
 bitrate = 16000  # number of frames per second/frameset.
 
-frequency = 261.63  # Hz, waves per second, 261.63=C4-note.
+frequency = 333  # Hz, waves per second, 261.63=C4-note.
 length = 1  # seconds to play sound
 
 if frequency > bitrate:

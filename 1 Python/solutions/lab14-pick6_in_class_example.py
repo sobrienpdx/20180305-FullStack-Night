@@ -1,7 +1,7 @@
 """
 In class solution to lab14-pick6
 """
-import random 
+import random, time
 
 payout = {0:0, 1:4, 2:7, 3:100, 4:50000, 5:1000000, 6:25000000}
 
@@ -37,6 +37,7 @@ def return_on_investment(earnings):
 
 def play_100000():
 	winning_ticket = pick6()
+	wins = 0
 	balance = 0
 	winnings = 0
 
@@ -44,14 +45,20 @@ def play_100000():
 		ticket = pick6()
 		balance -= 2
 		matches = num_matches(winning_ticket, ticket)
-		balance += payout[matches]
-		winnings += payout[matches]
+		win = payout[matches]
+		balance += win
+		winnings += win
+		if win > 3:
+			wins += 1
 
-	if balance > 0:
-		print(f"Your final balance is: {balance}")
-		print(f"Your return on investment (ROI) is: {return_on_investment(winnings)}")
+	if winnings > 30000:
+		print(f"Your final balance is: ${balance}")
+		print(f"You won {wins} times with ${winnings}")
+		print(f"Your return on investment (ROI) is: {return_on_investment(winnings)}\n")
 
 
 if __name__ == '__main__':
+	start = time.time()
 	for i in range(100):
 		play_100000()
+	print(f"Completed in {time.time()-start} seconds")
