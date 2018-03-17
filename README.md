@@ -28,3 +28,6 @@ M-F 6:00PM – 9:30PM
 - Lade
     - loladejr@yahoo.com
     - https://github.com/loladejr/pdxcodeguild3-5-18LL/
+
+### Cheat Sheets
+- Python: https://ehmatthes.github.io/pcc/cheatsheets/README.html
