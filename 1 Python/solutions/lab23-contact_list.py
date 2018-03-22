@@ -1,10 +1,7 @@
-# Lab 23: Contact List
 """
 Lab 23: Contact List
 Manage a list of contacts with a CSV file and a CRUDL REPL
 """
-
-
 # load the contacts from the given CSV
 def load(path):
     contacts = []
