@@ -29,4 +29,8 @@ This moves file recreates [this game](https://en.wikipedia.org/wiki/File:Connect
 
 ## Advanced
 
-* Once all moves are done, also print out what player, if any, won.
+*   Once all moves are done, also print out what player, if any, won.
+
+## Advanced 2
+
+*   Make game playable
