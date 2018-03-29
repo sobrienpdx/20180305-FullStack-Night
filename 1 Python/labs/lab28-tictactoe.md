@@ -8,10 +8,11 @@ You will write a **Player** class and **Board** class to model Tic Tac Toe, and 
 
 
 The Player class has the following properties: 
-**name**:*player name*, **symbol**:*'X' or 'Y'*
+* **name** = *player name*
+* **token** = *'X' or 'O'*
 
 The Board class has the following properties:
-**board**:*your representation of the board*
+* **board** = *your representation of the board*
 
 You can represent the board however you like, such as a 2D list, tuples, or dictionary.
 
