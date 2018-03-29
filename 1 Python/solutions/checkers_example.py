@@ -32,6 +32,30 @@ class Piece(object):
 
 class CheckersBoard(object):
 
+	"""
+	>>> board = CheckersBoard()
+	>>> board
+	BOBOBOBO
+	OBOBOBOB
+	XOXOXOXO
+	OXOXOXOX
+	XOXOXOXO
+	OXOXOXOX
+	XRXRXRXR
+	RXRXRXRX
+
+	>>> board.move_piece((1,1), 'left')
+	>>> board
+	BOBOBOBO
+	OXOBOBOB
+	XOBOXOXO
+	OXOXOXOX
+	XOXOXOXO
+	OXOXOXOX
+	XRXRXRXR
+	RXRXRXRX
+	"""
+
 	def __init__(self):
 		self.board = [['B', 'O', 'B', 'O', 'B', 'O', 'B', 'O'],
 					  ['O', 'B', 'O', 'B', 'O', 'B', 'O', 'B'],
@@ -89,9 +113,5 @@ class CheckersBoard(object):
 			self.board[x2][y2] = piece
 			self.board[x][y] = None
 
-if __name__ == '__main__':
-	board = CheckersBoard()
-	print(board)
-	print()
-	board.move_piece((1,1), 'left')
-	print(board)
+# if __name__ == '__main__':
+
