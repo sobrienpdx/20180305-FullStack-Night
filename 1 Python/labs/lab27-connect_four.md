@@ -12,7 +12,7 @@ Assume the playing board is made of columns numbered 1 through 7.
 The file will have one line for each move (players alternate).
 The number in that line is the column the current player placed a token in.
 
-Use the following [example move file](/connect_four/connect-four-moves.txt).
+Use the following [example move file](./connect_four/connect-four-moves.txt).
 Save it in something like `connect-four-moves.txt`
 This moves file recreates [this game](https://en.wikipedia.org/wiki/File:Connect_Four.gif).
 
