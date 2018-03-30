@@ -8,19 +8,21 @@ Lists are known as “arrays” in most other languages. A list is a simple cont
 
 Example:
 
-```py    supercar_makes = ['McLaren', 'Bugatti', 'Koenigsegg', 'Lamborghini', 'Ferrari', 'Aston Martin']
+```py
+supercar_makes = ['McLaren', 'Bugatti', 'Koenigsegg', 'Lamborghini', 'Ferrari', 'Aston Martin']
     
-    mixed_data = ['a string', 42, {'a':'dictionary'}]
+mixed_data = ['a string', 42, {'a':'dictionary'}]
 ```
 
 To access a member of a list, you reference its index. This makes it convenient to loop over the values. _Note that these indexes start at 0, not 1!_
 
 Example:
 
-```py    supercar_makes[2] #> 'Maserati'
+```py
+supercar_makes[2] #> 'Maserati'
     
-    for i in range(0, len(supercar_makes)):
-        print(supercar_makes[i])
+for i in range(0, len(supercar_makes)):
+    print(supercar_makes[i])
 ```
 
 Despite their simplicity and because they guarantee order, lists have many uses including acting as [queues](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) and [stacks](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
@@ -31,8 +33,9 @@ Tuples are immutable lists. The syntax to create them is similar (you use parent
 
 Example:
 
-```py    my_siblings = ('Mike', 'Sue', 'Kim')
-    my_siblings[2] #> 'Kim'
+```py
+my_siblings = ('Mike', 'Sue', 'Kim')
+my_siblings[2] #> 'Kim'
 ```
 
 ## Dict
@@ -41,24 +44,27 @@ Called “associative arrays” in some other languages, dictionaries in Python 
 
 Example:
 
-```py    food_ratings = {'burrito':9.5, 'pizza':7.0, 'curry':8.0, 'liverwurst':-472.9}
+```py
+food_ratings = {'burrito':9.5, 'pizza':7.0, 'curry':8.0, 'liverwurst':-472.9}
     
-    character = {'name':'Brienne of Tarth', 'role': 'knight', 'kings_killed': 1, 'allegiances': ['House Tarth', 'House Baratheon', 'Renly Baratheon’s Kingsguard', 'House Tully', 'House Stark']}
+character = {'name':'Brienne of Tarth', 'role': 'knight', 'kings_killed': 1, 'allegiances': ['House Tarth', 'House Baratheon', 'Renly Baratheon’s Kingsguard', 'House Tully', 'House Stark']}
 ```
 
 You can access members (values) of the dictionary directly using ‘sub’ syntax.
 
 Example:
 
-```py    food_ratings['curry']  # > 8.0
+```py
+food_ratings['curry']  # > 8.0
+```
 
 If you want to iterate over the values in a dictionary, you must first retrieve the keys using the built-in `.keys()` method.
-```
 
 Example:
 
-```py    for key in character.keys():
-        print(character[key])
+```py
+for key in character.keys():
+    print(character[key])
 ```
 
 Note that the results are not guaranteed to be in any particular order!
@@ -69,28 +75,30 @@ A set is an unordered collection of data with no duplicate elements.
 
 Example:
 
-```py    fruits = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
-    print(fruits) #> {'pear', 'banana', 'orange', 'apple'}
-    
-    letters_in_mississippi = set('mississippi')
-    print(letters_in_mississippi) #> {'m', 'p', 's', 'i'}
-    
-    letters_in_missouri = set('missouri')
-    print(letters_in_missouri) #> {'r', 'i', 'u', 'o', 'm', 's'}
-    
-    # sets enable set operations such as intersection, union, etc.
-    print(letters_in_mississippi - letters_in_missouri) #> {'p'}
-    print(letters_in_mississippi | letters_in_missouri) #> {'r', 'i', 'u', 'o', 'm', 'p', 's'}
-    print(letters_in_mississippi & letters_in_missouri) #> {'m', 's', 'i'}
-    print(letters_in_mississippi ^ letters_in_missouri) #> {'r', 'u', 'o', 'p'}
+```py
+fruits = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+print(fruits) #> {'pear', 'banana', 'orange', 'apple'}
+
+letters_in_mississippi = set('mississippi')
+print(letters_in_mississippi) #> {'m', 'p', 's', 'i'}
+
+letters_in_missouri = set('missouri')
+print(letters_in_missouri) #> {'r', 'i', 'u', 'o', 'm', 's'}
+
+# sets enable set operations such as intersection, union, etc.
+print(letters_in_mississippi - letters_in_missouri) #> {'p'}
+print(letters_in_mississippi | letters_in_missouri) #> {'r', 'i', 'u', 'o', 'm', 'p', 's'}
+print(letters_in_mississippi & letters_in_missouri) #> {'m', 's', 'i'}
+print(letters_in_mississippi ^ letters_in_missouri) #> {'r', 'u', 'o', 'p'}
 ```
 
 Accessing members of a set is a bit clunky. First, you need to cast the set as a list.
 
 Example:
 
-```py    list_of_letters_in_mississippi = list(letters_in_mississippi)
-    print(list_of_letters_in_mississippi) #> ['m', 'p', 's', 'i']
+```py
+list_of_letters_in_mississippi = list(letters_in_mississippi)
+print(list_of_letters_in_mississippi) #> ['m', 'p', 's', 'i']
 ```
 
 ## Stack
@@ -99,29 +107,29 @@ A stack is a collection of nodes with operations occuring at one end only. Think
 
 Simple Python stack implementation (uses lists):
 ```py
-    class Stack:
-        def __init__(self):
-            self.stack = []
+class Stack:
+    def __init__(self):
+        self.stack = []
 
-        def push(self, item):
-            self.stack.append(item)
+    def push(self, item):
+        self.stack.append(item)
 
-        def pop(self, item):
-            return self.stack.pop()
+    def pop(self, item):
+        return self.stack.pop()
 
-    # Alternatively, you can just implement a stack using a list and only appending to and popping from it.
+# Alternatively, you can just implement a stack using a list and only appending to and popping from it.
 
-    stack = []
-    stack.append(1)
-    print(stack)  # > [1]
-    stack.append(2)
-    print(stack)  # > [1,2]
-    stack.append(3)
-    print(stack)  # > [1,2,3]
-    stack.pop()
-    print(stack)  # > [1,2]
-    stack.pop()   
-    print(stack)  # > [1]
+stack = []
+stack.append(1)
+print(stack)  # > [1]
+stack.append(2)
+print(stack)  # > [1,2]
+stack.append(3)
+print(stack)  # > [1,2,3]
+stack.pop()
+print(stack)  # > [1,2]
+stack.pop()   
+print(stack)  # > [1]
 ```
 
 Stacks are handy for remembering states (e.g. undo/redo).
@@ -132,29 +140,29 @@ A queue is an ordered collection of nodes with operations that run in a First In
 
 Simple Python queue implementation (uses lists):
 ```py
-    class Queue:
-        def __init__(self):
-            self.stack = []
+class Queue:
+    def __init__(self):
+        self.stack = []
 
-        def enqueue(self, item):
-            self.stack.append(item)
+    def enqueue(self, item):
+        self.stack.append(item)
 
-        def dequeue(self, item):
-            return self.stack.pop(0)
+    def dequeue(self, item):
+        return self.stack.pop(0)
 
-    # Alternatively, you can just implement a queue using a list and only appending to end and popping from the front.
+# Alternatively, you can just implement a queue using a list and only appending to end and popping from the front.
 
-    queue = []
-    queue.append(1)
-    print(queue)  # > [1]
-    queue.append(2)
-    print(queue)  # > [1,2]
-    queue.append(3)
-    print(queue)  # > [1,2,3]
-    queue.pop(0)  # > 1
-    print(queue)  # > [2,3]
-    queue.pop(0)  # > 2 
-    print(queue)  # > [3]
+queue = []
+queue.append(1)
+print(queue)  # > [1]
+queue.append(2)
+print(queue)  # > [1,2]
+queue.append(3)
+print(queue)  # > [1,2,3]
+queue.pop(0)  # > 1
+print(queue)  # > [2,3]
+queue.pop(0)  # > 2 
+print(queue)  # > [3]
 ```
 
 Queues are useful in programming like queues are in the real world. They act as buffers that store data until they need to be used on a first come first serve FIFO basis.
@@ -176,33 +184,33 @@ Trees allow for a hierarchical representation of relationships between different
 
 Simple Python tree implementation
 ```py
-    class Tree:
-        def __init__(self, data, children=None, parent=None):
-            self.data = data
-            self.children = children or []
-            self.parent = parent
+class Tree:
+    def __init__(self, data, children=None, parent=None):
+        self.data = data
+        self.children = children or []
+        self.parent = parent
 
-        def add_child(self, data):
-            child = Tree(data, parent=self)
-            self.children.append(child)
+    def add_child(self, data):
+        child = Tree(data, parent=self)
+        self.children.append(child)
 
-    # Alternatively, you can just implement a tree using Python's builtin defaultdict recursively.
+# Alternatively, you can just implement a tree using Python's builtin defaultdict recursively.
 
-    from collections import defaultdict
-    def Tree():
-        return defaultdict(Tree)
+from collections import defaultdict
+def Tree():
+    return defaultdict(Tree)
 
-                            #                        1
-    tree = Tree()           #                      / | \  
-    tree[1][2][5] = 6       #                    2   3   4  
-    tree[1][3] = 7          #                    |   |    /\
-    tree[1][4][8]           #                    5   7   8  9
-    tree[1][4][9] = 10      #                    |          |
-                            #                    6          10
+                        #                        1
+tree = Tree()           #                      / | \  
+tree[1][2][5] = 6       #                    2   3   4  
+tree[1][3] = 7          #                    |   |    /\
+tree[1][4][8]           #                    5   7   8  9
+tree[1][4][9] = 10      #                    |          |
+                        #                    6          10
 
-    # We can print out the tree as json
-    import json
-    print(json.dumps(tree)) # > {"1": {"2": {"5": 6}, "3": 7, "4": {"8": {}, "9": {}}}}
+# We can print out the tree as json
+import json
+print(json.dumps(tree)) # > {"1": {"2": {"5": 6}, "3": 7, "4": {"8": {}, "9": {}}}}
 ```
 Here, 1 is the root node, and 6, 7, 8, and 10 are leaf nodes.
 
