@@ -110,6 +110,7 @@ class Graph:
                     fringe.put(neighbor, f[neighbor])
                     came_from[neighbor] = current_node
 
+
 def answer(src, dest):
     game = Graph()    
     return len(game.a_star(src, dest))
@@ -120,7 +121,8 @@ if __name__ == '__main__':
     board = list(game.CHESSBOARD.keys())
 
 
-    start, goal = (63, 56)
+    start, goal = (19, 36)
+    # start, goal = (0, 1)
 
     for i in range(8):
         for j in range(8):
