@@ -1,6 +1,12 @@
 from collections import defaultdict
 from multiprocessing import Queue
 
+# # Chessboard position
+# Position = namedtuple('Position', ['number', 'coord'])
+
+# # Chessboard
+# Chessboard = [[Position(i+8*j, (i, j)) for i in range(8)] for j in range(8)]
+
 class Graph:
     """ Simple graph implementation
     """
@@ -83,7 +89,8 @@ class Graph:
 
 if __name__ == '__main__':
     game = Graph()
-    for row in game.CHESSBOARD.keys():
-        for col in row:
-            print(f'{col}', sep=' ')
+    board = game.CHESSBOARD.keys():
+    for i in range(8):
+        for j in range(8):
+            print(str(board[i+8*j]).zfill(2), sep='|')
         print()
