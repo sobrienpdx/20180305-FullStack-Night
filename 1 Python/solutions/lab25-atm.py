@@ -3,6 +3,8 @@
 
 """
 >>> test = ATM()
+>>> test.calc_interst
+
 """
 class ATM(object):
 
@@ -13,7 +15,6 @@ class ATM(object):
 
     def calc_interest(self):
         """ Returns the amount of interest calculated on the account
-        >>> test.calc
         """
         ret = round(self.balance + self.balance * self.interest, 2)
         self.transactions.append(f'User calculated interest: ${ret}')
@@ -25,10 +26,6 @@ class ATM(object):
         self.transactions.append(f'User checked balance: ${self.balance}')
         return self.balance
 
-    def check_withdrawal(self, amount):
-        """ Returns true if the withdrawn amount won't put the account in the negative
-        """
-        return self.balance > amount
 
     def deposit(self, amount):
         """ Deposits the given amount in the account
@@ -42,6 +39,11 @@ class ATM(object):
         for line in self.transactions:
             print(line)
         
+    def check_withdrawal(self, amount):
+        """ Returns true if the withdrawn amount won't put the account in the negative
+        """
+        return self.balance > amount
+
     def withdraw(self, amount):
         """ Withdraws the amount from the acount and returns it
         """
@@ -87,3 +89,4 @@ if __name__ == '__main__':
 
         elif op in ['check history', 'h']:
             atm.print_transactions()
+

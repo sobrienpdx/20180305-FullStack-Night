@@ -1,4 +1,4 @@
-import random
+import argparse, random
 
 class Piece:
     def __init__(self, color):
@@ -25,6 +25,21 @@ class GameBoard:
             if self.board[i][position] == 'O':
                 return i
         return False # column is full
+
+    def place_piece(self, piece_color, position):
+        height = self._get_height(position)
+        if type(height) is bool:
+            print('Column full. Select another.')
+            return False
+        self.board[height][position] = Piece(piece_color)
+
+    def print_board(self):
+        print(self.board)
+        for row in range(len(self.board)):
+            for cell in self.board[row]:
+                print(cell, end='|')
+            print()
+        print()
 
     def check_win(self):
         # check horizontal wins
@@ -65,30 +80,69 @@ class GameBoard:
                 elif chunk[3][0] == chunk[1][2] == chunk[2][1] == chunk[0][3] and chunk[3][0] != 'O':
                     return chunk[3][0]
 
+    def is_full(self):
+        return not any([item == 'O' for item in self.board[i]] for i in range(len(self.board)))
 
-    def place_piece(self, piece_color, position):
-        height = self._get_height(position)
-        if not height:
-            print('Column full. Select another.')
-            return False
-        self.board[height][position] = Piece(piece_color)
-
-    def print_board(self):
-        for row in range(len(self.board)):
-            for cell in self.board[row]:
-                print(cell, end='|')
-            print()
+    def game_over(self):
+        return self.check_win() or self.is_full()
 
 
 if __name__ == '__main__':
-    board = GameBoard()
+    parser = argparse.ArgumentParser(description='Connect Four module')
+    parser.add_argument('-f', '--file', 
+                        help='File path of Connect Four moves you want to evaluate.')
+    args = parser.parse_args()
 
-    with open('connect-four-moves.txt', 'r') as f:
-        moves = f.read().split()
+    # File input version
+    if args.file:
+        with open(args.file, 'r') as f:
+            moves = f.read().split()
+        
+        board = GameBoard()
 
-    for i, move in enumerate(moves):
-        current_turn = 'yellow' if i % 2 == 0 else 'red'
-        board.place_piece(current_turn, int(move) - 1)
+        for i, move in enumerate(moves):
+            current_turn = 'yellow' if i % 2 == 0 else 'red'
+            board.place_piece(current_turn, int(move) - 1)
 
-    board.print_board()
-    print(board.check_win())
+        board.print_board()
+        print(board.check_win())
+
+    # 2 player game version
+    else:
+        while True:
+            board = GameBoard()
+            player_one = 'yellow'
+            player_two = 'red'
+            game_round = 1
+
+            while not board.game_over():
+                current_player = player_one if game_round % 2 else player_two 
+
+                while True:
+                    move = input(f"{current_player}: Enter your move: ").strip().lower()
+                    try:
+                        move = int(move)
+                        if 1 <= move <= 7:
+                            move = board.place_piece(current_player, move-1)
+                            if type(move) is str:
+                                raise IndexError('Invalid column.')
+                            board.print_board()
+                            game_round += 1
+                            break
+                        else:
+                            raise IndexError('Invalid column.')
+                    except (ValueError, IndexError):
+                        print("Invalid move. Please choose a column [1-7] that isn't full.")
+
+            if not board.is_full():
+                print(f"Game over! Winner: {board.check_win()}")
+            else:
+                print(f"Game over! No one wins!")
+
+            while True:
+                play_ag = input("Do you want to play again: ").strip().lower()
+                if play_ag in ['yes', 'y', 'no', 'n']:
+                    break
+
+            if play_ag in ['no', 'n']:
+                break

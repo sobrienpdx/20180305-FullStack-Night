@@ -7,16 +7,18 @@ def load_csv(path):
     """
     Returns a list where each item is a dictionary of col:cell pairs within the csv
     """
+    columns = "name, phone, address".split(',') = [name, phone, address]
     loaded_csv = []
     with open(path, 'r') as f:
         contents = f.read().split('\n')     # split csv by lines
     columns = contents[0].split(',')        # first line is column names
     for line in contents[1:]:               # iterate over rows
         row = line.split(',')               # split cells by comma
-        row_dict = {}
-        for i in range(len(columns)):
-            row_dict[columns[i]] = row[i]   # add col[i]:row[i] pair to dict
-        loaded_csv.append(row_dict)
+        row_dict = dict(zip(columns, row))
+        # row_dict = {}
+        # for i in range(len(columns)):
+        #     row_dict[columns[i]] = row[i]   # add col[i]:row[i] pair to dict
+        # loaded_csv.append(row_dict)
     return loaded_csv
 
 
