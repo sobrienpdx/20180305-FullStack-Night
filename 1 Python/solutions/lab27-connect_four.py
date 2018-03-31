@@ -81,7 +81,7 @@ class GameBoard:
 
     def is_full(self):
         for row in self.board:
-            if any(item==' ' for item in row):
+            if any(item=='O' for item in row):
                 return False
         return True
 
@@ -134,7 +134,6 @@ if __name__ == '__main__':
                             raise IndexError('Invalid column.')
                     except (ValueError, IndexError):
                         print("Invalid move. Please choose a column [1-7] that isn't full.")
-                    
                 game_round += 1
 
             if not board.is_full():
