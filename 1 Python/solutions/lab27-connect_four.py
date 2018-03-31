@@ -129,12 +129,13 @@ if __name__ == '__main__':
                             if type(move) is str:
                                 raise IndexError('Invalid column.')
                             board.print_board()
-                            game_round += 1
                             break
                         else:
                             raise IndexError('Invalid column.')
                     except (ValueError, IndexError):
                         print("Invalid move. Please choose a column [1-7] that isn't full.")
+                    
+                game_round += 1
 
             if not board.is_full():
                 print(f"Game over! Winner: {board.check_win()}")
