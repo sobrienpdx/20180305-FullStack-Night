@@ -28,7 +28,7 @@ O|X|O
 * `place_token(x, y, token)` Place a token character string at a given coordinate (top-left is 0, 0), x is horizontal position, y is vertical position.
 
 ```py
->>> board.place_token(1, 2, 'X')
+>>> board.place_token(2, 1, 'X')
  | | 
  | |X
  | | 
