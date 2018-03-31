@@ -34,7 +34,6 @@ class GameBoard:
         self.board[height][position] = Piece(piece_color)
 
     def print_board(self):
-        print(self.board)
         for row in range(len(self.board)):
             for cell in self.board[row]:
                 print(cell, end='|')
