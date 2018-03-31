@@ -80,7 +80,10 @@ class GameBoard:
                     return chunk[3][0]
 
     def is_full(self):
-        return not any([item == 'O' for item in self.board[i]] for i in range(len(self.board)))
+        for row in self.board:
+            if any(item==' ' for item in row):
+                return False
+        return True
 
     def game_over(self):
         return self.check_win() or self.is_full()
