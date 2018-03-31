@@ -1,20 +1,23 @@
 import heapq
 from collections import defaultdict
 
+
+class Position:
+    def __init__(self, coord):
+        self.x, self.y = coord
+
+    def __add__(self, coord):
+        return (self.x + coord.x, self.y+coord.y)
+
+
 class PriorityQueue:
     """ Simple priority queue implementation using binary heaps
     """
     def __init__(self):
         self.elements = []
-        self.nodes = set()
 
     def put(self, item, priority):
-        if item not in self.nodes:
-            heapq.heappush(self.elements, (priority, item))
-            self.nodes.add(item)
-        else:
-            match = [pair for pair in self.elements if pair[1] == item][0]
-            self.elements.remove(match)
+        heapq.heappush(self.elements, (priority, item))
 
     def get(self):
         return heapq.heappop(self.elements)[1]
@@ -31,33 +34,38 @@ class Graph:
         for j in range(8):
             CHESSBOARD[i+8*j] = (i, j)        
 
+    COORDINATES = {v:k for k,v in CHESSBOARD.items()}            
+
     def __init__(self):
         self.edges = {}
 
     def get_neighbors(self, node):
         """ Returns list of positions reachable with knight moves
         """
-        knight_moves = [-17, -15, -10, -6, 6, 10, 15, 17] 
+        knight_moves = [(-1,-2), (1,2),
+                        (1,-2), (-1,2),
+                        (-2,-1), (2,1),
+                        (2,-1), (-2,1)] 
         neighbors = []
         for move in knight_moves:
-            neighbor = node + move
-            if 0 <= neighbor < 64:
-                neighbors.append(neighbor)
+            x, y = Position(node) + Position(move)
+            if 0 <= x < 8 and 0 <= y < 8:
+                neighbors.append((x,y))
         self.edges[node] = neighbors
         
-    def h(self, start, goal):
+    @staticmethod
+    def h(start, goal):
         """ Returns manhattan distance heuristic
         """
-        (x1, y1) = self.CHESSBOARD[start]
-        (x2, y2) = self.CHESSBOARD[goal]
+        (x1, y1) = start
+        (x2, y2) = goal
         return abs(x1-x2) + abs(y1-y2)
 
-    @staticmethod
-    def reconstruct_path(came_from, start, end):
+    def reconstruct_path(self, came_from, start, end):
         path = []
         current_node = end
         while current_node != start:
-            path.append(current_node)
+            path.append(self.COORDINATES[current_node])
             current_node = came_from[current_node]
         path.reverse()
         return path
@@ -66,6 +74,8 @@ class Graph:
     def a_star(self, start, goal):
         """ A* search algorithm implementation
         """
+        start = self.CHESSBOARD[start]
+        goal = self.CHESSBOARD[goal]
         visited = set()                         # set of visited nodes
         fringe = PriorityQueue()                # priority queue of fringe nodes
         came_from = {}                          # history of nodes
@@ -108,6 +118,7 @@ def answer(src, dest):
 if __name__ == '__main__':
     game = Graph()
     board = list(game.CHESSBOARD.keys())
+
 
     start, goal = (63, 56)
 
