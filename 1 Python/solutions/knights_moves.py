@@ -70,15 +70,51 @@ class Graph:
         path.reverse()
         return path
 
+    def validate_destination(self, start, goal):
+        try:
+            start = self.CHESSBOARD[start]
+            goal = self.CHESSBOARD[goal]
+            return (start, goal)
+        except KeyError:
+            return 'Invalid destination.'
+
+    def bfs(self, start, goal):
+        valid = self.validate_destination(start, goal)
+        if type(valid) is str:
+            return valid 
+        start, goal = valid
+        visited = set()                         # set of visited nodes
+        fringe = []                             # fringe with queue list implementation
+        came_from = {}                          # path history
+        fringe.append(start)
+        came_from[start] = None
+
+        while len(fringe):
+            current_node = fringe.pop(0)
+            # exit condition: solution found
+            if current_node == goal:
+                return self.reconstruct_path(came_from, start, current_node)
+
+            # update fringe and visited set
+            visited.add(current_node)
+            self.get_neighbors(current_node)
+            for neighbor in self.edges[current_node]:
+                # add neighbor to fringe it's unexplored
+                if neighbor not in visited:
+                    fringe.append(neighbor)
+                    came_from[neighbor] = current_node
+
 
     def a_star(self, start, goal):
         """ A* search algorithm implementation
         """
-        start = self.CHESSBOARD[start]
-        goal = self.CHESSBOARD[goal]
+        valid = self.validate_destination(start, goal)
+        if type(valid) is str:
+            return valid 
+        start, goal = valid
         visited = set()                         # set of visited nodes
         fringe = PriorityQueue()                # priority queue of fringe nodes
-        came_from = {}                          # history of nodes
+        came_from = {}                          # path history
         f = defaultdict(lambda: float('inf'))   # f(n) = g(n) + h(n) (priority rating)
         g = defaultdict(lambda: float('inf'))   # g(n) = cost of path from start node
                                                 # h(n) = heuristic distance to goal
@@ -86,7 +122,6 @@ class Graph:
         f[start] = self.h(start, goal)
         g[start] = 0
         fringe.put(start, f[start])
-        current_node = start
 
         while not fringe.empty():
             # select node with lowest f value
@@ -96,7 +131,7 @@ class Graph:
             if current_node == goal:
                 return self.reconstruct_path(came_from, start, current_node)
 
-            # update fringe and visited sets
+            # update fringe and visited set
             visited.add(current_node)
 
             # explore neighbors of current node
@@ -112,8 +147,8 @@ class Graph:
 
 
 def answer(src, dest):
-    game = Graph()    
-    return len(game.a_star(src, dest))
+    ret = Graph().bfs(src, dest)
+    return len(ret) if type(ret) is list else ret
     
 
 if __name__ == '__main__':
@@ -121,8 +156,14 @@ if __name__ == '__main__':
     board = list(game.CHESSBOARD.keys())
 
 
+    start, goal = (0, 1)
     start, goal = (19, 36)
-    # start, goal = (0, 1)
+    # start, goal = (0, 0)
+    start, goal = (0, 64)
+    start, goal = (0, 7)    
+    start, goal = (63, 56)  
+    # tests = [((0, 1), , (0, 0), (0, 64), (19, 36), (0, 7), (63, 56)] 
+
 
     for i in range(8):
         for j in range(8):
@@ -135,5 +176,5 @@ if __name__ == '__main__':
         print()
 
     solution = game.a_star(start, goal)
-    print(solution, len(solution))
+    print(solution, len(solution) if not type(solution) is str else '')
     print(answer(start, goal))    
