@@ -7,6 +7,7 @@ Did you know GitHub will let you use a repo to host a static website? Follow [th
 If you're looking for inspiration, check out these:
 - http://matthewbryancurtis.com/
 - https://kprasch.github.io/TinyResume/
+- https://github.com/HackathonHackers/personal-sites
 - https://medium.freecodecamp.org/15-web-developer-portfolios-to-inspire-you-137fb1743cae
 - https://www.reddit.com/r/learnprogramming/comments/39g7v9/example_portfolio_websites/
 
