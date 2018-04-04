@@ -31,3 +31,19 @@ M-F 6:00PM – 9:30PM
 
 ### Cheat Sheets
 - Python: https://ehmatthes.github.io/pcc/cheatsheets/README.html
+
+## Outside Resources
+- Python: 
+    - Practice:
+        - https://www.hackerrank.com/domains/tutorials/30-days-of-code 
+        - http://codingbat.com/python
+        - https://codefights.com/
+    - Textbooks:
+        - https://automatetheboringstuff.com/
+        
+- Frontend (HTML/CSS/JS):
+    - https://www.freecodecamp.org/ (Practice, projects, (almost) textbook all-in-one!)
+    
+- Django:
+    - https://tutorial.djangogirls.org/
+    - https://docs.djangoproject.com/en/2.0/intro/tutorial01/ (Official tutorial)
