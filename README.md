@@ -29,9 +29,6 @@ M-F 6:00PM – 9:30PM
     - loladejr@yahoo.com
     - https://github.com/loladejr/pdxcodeguild3-5-18LL/
 
-### Cheat Sheets
-- Python: https://ehmatthes.github.io/pcc/cheatsheets/README.html
-
 ## Outside Resources
 - Python: 
     - Practice:
@@ -40,9 +37,14 @@ M-F 6:00PM – 9:30PM
         - https://codefights.com/
     - Textbooks:
         - https://automatetheboringstuff.com/
+    - Cheat Sheets:
+        - https://ehmatthes.github.io/pcc/cheatsheets/README.html
+        - https://learnxinyminutes.com/docs/python3/
         
 - Frontend (HTML/CSS/JS):
     - https://www.freecodecamp.org/ (Practice, projects, (almost) textbook all-in-one!)
+    - https://learnxinyminutes.com/docs/javascript/
+    - https://sass-lang.com/guide (SASS: CSS preprocessor tutorial)
     
 - Django:
     - https://tutorial.djangogirls.org/
