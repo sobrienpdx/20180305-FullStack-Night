@@ -26,19 +26,6 @@ class Board:
             ret += '|'.join(row)
             ret += '\n'
         return ret
-        
-        # ret = ''
-        # i = 1
-        # for row in self.board:
-        #     for cell in row:
-        #         if cell == ' ':
-        #             cell = i
-        #         ret += str(cell)
-        #         if i%3:
-        #             ret += '|'
-        #         i += 1
-        #     ret += '\n'
-        # return ret        
 
     def place_token(self, x, y, token):
         if self.board[y][x] != ' ':
@@ -52,7 +39,7 @@ class Board:
             for j in range(self.WIDTH-2):
                 chunk = self.board[i][j:j+3]
                 if all(item == self.board[i][j] and item != ' ' for item in chunk):
-                    return self.board[i][j].name
+                    return self.board[i][j]
 
         # check vertical wins
         for j in range(self.WIDTH):  
@@ -122,7 +109,7 @@ if __name__ == '__main__':
                     # try:
                     #   x, y = move.split(',')
                     # except ValueError, IndexError:
-                        print("Invalid move. Please choose a sqaure [1-9] that isn't full.")
+                        print("Invalid move. Please choose a square [1-9] that isn't full.")
 
         if not board.is_full():
             print(f"Game over! Winner: {board.calc_winner()}")

@@ -61,7 +61,6 @@ class Board:
                 left_diag = True
                 right_diag = True
                 for k in range(self.n):
-                    print(type(chunk[k][k]))
                     if not left_diag and not right_diag :
                         continue
                     if chunk[k][k] != chunk[0][0] or not type(chunk[k][k]) is Player:
