@@ -12,30 +12,62 @@ Write a function which takes a string representing employees walking along a hal
 DOCTESTS:
 >>> answer(">----<")
 2
-
 >>> answer("<<>><")
 4
-
+>>> answer("<<->->-<")
+4
+>>> answer("<->")
+0
+>>> answer("<>->")
+0
+>>> answer(">--------------------------------------------------------------------------------------------------------------------------------<<")
+4
+>>> answer("<<>><<<>><")
+20
+>>> answer("<<>><<<>><<<>><<<>><")
+88
 """
+import time
+
+def print_runtime(func):
+
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"{func.__name__}({args}, {kwargs}) completed in {end_time-start_time} seconds")
+        return result
+
+    wrapper.__name__ = func.__name__
+    return wrapper    
+
 
 def answer(s):
-    left = []
-    right = []
-    count = 0
-    for i in range(len(s)):
-        if s[i] == '<':
-            left.append((s[i], i))
-        elif s[i] == '>':
-            right.append((s[i], i))
-    # print(left, right)
-    for i in range(len(left)):
-        for j in range(len(right)-1, -1, -1):
-            l = left[i]
-            r = right[j]
-            # if l[1] >= r[1]:
-            #     break
-            # print(l, r)
-            if l[1] - r[1] > 0:
-                count += 1
-    return count*2
+    return calc_salutes_in_linear_time(s)
 
+
+def calc_salutes_in_linear_time(s):
+    """ Optimized solution with O(n) = n
+    """
+    salutes = 0
+    lefts = 0
+    for i in range(len(s)):
+        if s[i] == '>':
+            lefts += 1
+        elif s[i] == '<':
+            salutes += lefts 
+    return salutes*2
+    
+
+def calc_salutes_in_n_squared_time(s):  
+    """ First solution with O(n) = n^2 (triangular sequence)
+    """
+    salutes = 0
+    for i in range(len(s)):
+        if s[i] == '>':
+            for j in range(len(s)-1, -1, -1):
+                if i >= j:
+                    break
+                if s[j] == '<':
+                    salutes += 1
+    return salutes*2    
