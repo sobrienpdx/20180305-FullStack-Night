@@ -1,5 +1,6 @@
-# Google braille_translation.py
 """
+braille_translation.py
+
  Braille Translation
  Part of the Google secret interview process
 ===================
