@@ -1,3 +1,11 @@
+"""
+knights_moves.py
+
+From Google foo.bar challenge:
+
+Write a function answer(src, dest) that takes a two integers with values between 1 and 64 representing a position on a chessboard and returns the length of the minimal route a knight piece can take to get from the source position to the destination position.
+
+"""
 import heapq
 from collections import defaultdict
 
