@@ -24,7 +24,8 @@ from itertools import combinations
 def answer(l):
     print(combination_lucky_triples(l))
     # return len(combination_lucky_triples(l))
-    return dynamic_soln_lucky_triples(l)
+    print(dynamic_soln_lucky_triples(l))
+    return len(dynamic_soln_lucky_triples(l))
 
 def is_lucky_triple(triple):
     """ Returns x|y && y|z using modulo division
@@ -43,9 +44,11 @@ def dynamic_soln_lucky_triples(l):
     """ Dynamic solution computes in O(n^2) time.
     """
     factors = defaultdict(lambda:[])
-    triples = 0
+    triples = set()
     for x, y in combinations(l, 2):
         if not y%x:
             factors[y].append(x)
-            triples += len(factors[x])
+            for factor in factors[x]:
+                for multiple in factors[y]:
+                    triples.add((factor, x, multiple))
     return triples
