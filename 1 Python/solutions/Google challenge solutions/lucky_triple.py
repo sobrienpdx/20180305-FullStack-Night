@@ -45,10 +45,11 @@ def dynamic_soln_lucky_triples(l):
     """
     factors = defaultdict(lambda:[])
     triples = set()
-    for x, y in combinations(l, 2):
+    for (j, x), (k, y) in combinations(enumerate(l), 2):
         if not y%x:
-            factors[y].append(x)
-            for factor in factors[x]:
-                for multiple in factors[y]:
-                    triples.add((factor, x, multiple))
+            factors[y].append((x, j))
+            for factor, i in factors[x]:
+                if i < j < k:
+                    triple = (factor, x, y)
+                    triples.add(triple)
     return triples
