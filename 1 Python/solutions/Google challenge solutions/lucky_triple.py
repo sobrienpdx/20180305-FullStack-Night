@@ -24,7 +24,7 @@ from itertools import combinations
 def answer(l):
     print(combination_lucky_triples(l))
     # return len(combination_lucky_triples(l))
-    # print(dynamic_soln_lucky_triples(l))
+    print(dynamic_soln_lucky_triples(l))
     return len(dynamic_soln_lucky_triples(l))
 
 def is_lucky_triple(triple):
@@ -44,9 +44,12 @@ def dynamic_soln_lucky_triples(l):
     """ Dynamic solution computes in O(n^2) time.
     """
     factors = defaultdict(lambda:[])
-    triples = 0
-    for x, y in combinations(l, 2):
+    triples = set()
+    for (j, x), (k, y) in combinations(enumerate(l), 2):
         if not y%x:
-            factors[y].append(x)
-            triples += len(factors[x])
+            factors[y].append((x, j))
+            for factor, i in factors[x]:
+                if i < j < k:
+                    triple = (factor, x, y)
+                    triples.add(triple)
     return triples
