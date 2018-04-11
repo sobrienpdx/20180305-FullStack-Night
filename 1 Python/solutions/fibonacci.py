@@ -3,6 +3,26 @@ import time, json, os
 
 cached_fibonacci = {0:1, 1:1} # base cases 
 
+def calc_time(fn):
+    """ Calculates execution time of function f
+    """
+    def timed(*args, **kwargs):
+        start = time.time()
+        result = fn(*args, **kwargs)
+        print(f"Completed in {time.time()-start} seconds.")
+        return result
+    return timed
+
+def memoize(fn):
+    """ Memoization decorator to give fibonacci() equivalent optimization as optimized_fibonacci()
+    """
+    memo = {}
+    def call(x):
+        if x not in memo:
+            memo[x] = fn(x)
+        return memo[x]
+    return call
+
 def optimized_fibonacci(n):
     """
     Finds nth fibonacci using caching
@@ -13,7 +33,7 @@ def optimized_fibonacci(n):
         cached_fibonacci[n] = optimized_fibonacci(n-1) + optimized_fibonacci(n-2) 
         return cached_fibonacci[n]
 
-
+@memoize
 def fibonacci(n):
     """
     Finds nth fibonacci without caching
@@ -25,11 +45,15 @@ def fibonacci(n):
 
 if __name__ == '__main__':
 
-    start_time = time.time()
     n = int(input("How many fibonacci numbers do you want to calculate: ").strip().replace(',',''))
-    print(f"Calculating first {n} fibonacci numbers")
+    print(f"In optimized_fibonacci(): Calculating first {n} fibonacci numbers")
     start_time = time.time()
     for i in range(n+1):
         optimized_fibonacci(i)
-    print(f"Completed in {time.time()-start_time} seconds")
     print(f"The {n}th fibonacci number is {optimized_fibonacci(n)}")
+    print(f"Completed in {time.time()-start_time} seconds")
+    print(f"In fibonacci() with memoization:")
+    start_time = time.time()
+    print(f"The {n}th fibonacci number is {fibonacci(n)}")
+    print(f"Completed in {time.time()-start_time} seconds")
+

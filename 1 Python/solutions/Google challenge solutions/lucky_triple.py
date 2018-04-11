@@ -22,10 +22,11 @@ from collections import defaultdict
 from itertools import combinations
 
 def answer(l):
-    print(combination_lucky_triples(l))
+    # print(combination_lucky_triples(l))
     # return len(combination_lucky_triples(l))
-    print(dynamic_soln_lucky_triples(l))
-    return len(dynamic_soln_lucky_triples(l))
+    # print(dynamic_soln_lucky_triples(l))
+    # return len(dynamic_soln_lucky_triples(l))
+    return dynamic_soln_lucky_triples(l)
 
 def is_lucky_triple(triple):
     """ Returns x|y && y|z using modulo division
@@ -43,13 +44,16 @@ def combination_lucky_triples(l):
 def dynamic_soln_lucky_triples(l):
     """ Dynamic solution computes in O(n^2) time.
     """
-    factors = defaultdict(lambda:[])
-    triples = set()
-    for (j, x), (k, y) in combinations(enumerate(l), 2):
-        if not y%x:
-            factors[y].append((x, j))
-            for factor, i in factors[x]:
-                if i < j < k:
-                    triple = (factor, x, y)
-                    triples.add(triple)
-    return triples
+    if len(l) < 3:
+        return 0
+
+    factors = defaultdict(lambda:set())
+    triples = []
+    for k in range(len(l)):
+        for j in range(k):
+            y, z = (l[j], l[k])
+            if not z%y:
+                factors[k].add(j)
+                valid_triples = [(l[i], l[j], l[k]) for i in factors[j]]
+                triples.extend(valid_triples)
+    return len(triples)
