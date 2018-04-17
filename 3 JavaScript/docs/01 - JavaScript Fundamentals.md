@@ -5,7 +5,7 @@ You can read more about JavaScript syntax on the [MDN](https://developer.mozilla
 
 ## Declaring Variables
 
-There are three ways to declare variables: `var`, `let` and `const`. The only difference between `var` and `let` is that `let` has a more limited scope. In general, `let` is preferable, unless you your code needs to be compatible with older browsers.
+There are three ways to declare variables: `var`, `let` and `const`. The only difference between `var` and `let` is that `let` has a more limited scope. In general, `let` is preferable, unless your code needs to be compatible with older browsers.
 
 ```javascript
 if (2 < 10) {
