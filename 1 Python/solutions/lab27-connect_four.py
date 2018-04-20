@@ -41,43 +41,36 @@ class GameBoard:
         print()
 
     def check_win(self):
-        # check horizontal wins
         for i in range(self.DEPTH-1, -1, -1):
-            for j in range(self.WIDTH-3):
-                chunk = self.board[i][j:j+4]
-                if all(item == self.board[i][j] and item != 'O' for item in chunk):
-                    return self.board[i][j]
+            for j in range(self.WIDTH):
+                # check horizontal wins
+                if j < self.WIDTH-3:
+                    chunk = self.board[i][j:j+4]
+                    if all(item == self.board[i][j] and item != 'O' for item in chunk):
+                        return self.board[i][j]
 
-        # check vertical wins
-        for j in range(self.WIDTH):  
-            for i in range(self.DEPTH-3):  
-                chunk = []
-                chunk.append(self.board[i][j])
-                chunk.append(self.board[i+1][j])
-                chunk.append(self.board[i+2][j])
-                chunk.append(self.board[i+3][j])
-                if all(item == self.board[i][j] and item != 'O' for item in chunk):
-                    return self.board[i][j]
+                # check vertical wins
+                if i < self.DEPTH-3:
+                    chunk = []
+                    chunk.append(self.board[i][j])
+                    chunk.append(self.board[i+1][j])
+                    chunk.append(self.board[i+2][j])
+                    chunk.append(self.board[i+3][j])
+                    if all(item == self.board[i][j] and item != 'O' for item in chunk):
+                        return self.board[i][j]
 
-        # check diagonal wins
-        for i in range(self.DEPTH-3):
-            for j in range(self.WIDTH-3):
-                chunk = []
-                chunk.append(self.board[i][j:j+4])
-                chunk.append(self.board[i+1][j:j+4])
-                chunk.append(self.board[i+2][j:j+4])
-                chunk.append(self.board[i+3][j:j+4])
-                # for row in chunk:
-                #     for cell in row:
-                #         print(cell, end='|')
-                #     print()
-                # print(chunk[0][0] , chunk[1][1] , chunk[2][2] , chunk[3][3])
-                # print(chunk[3][0] , chunk[1][2] , chunk[2][1] , chunk[0][3])
-                # print()
-                if chunk[0][0] == chunk[1][1] == chunk[2][2] == chunk[3][3] and chunk[0][0] != 'O':
-                    return chunk[0][0]
-                elif chunk[3][0] == chunk[1][2] == chunk[2][1] == chunk[0][3] and chunk[3][0] != 'O':
-                    return chunk[3][0]
+                # check diagonal wins
+                if i < self.DEPTH-3 and j < self.WIDTH-3:
+                    chunk = []
+                    chunk.append(self.board[i][j:j+4])
+                    chunk.append(self.board[i+1][j:j+4])
+                    chunk.append(self.board[i+2][j:j+4])
+                    chunk.append(self.board[i+3][j:j+4])
+
+                    if chunk[0][0] == chunk[1][1] == chunk[2][2] == chunk[3][3] and chunk[0][0] != 'O':
+                        return chunk[0][0]
+                    elif chunk[3][0] == chunk[1][2] == chunk[2][1] == chunk[0][3] and chunk[3][0] != 'O':
+                        return chunk[3][0]
 
     def is_full(self):
         for row in self.board:

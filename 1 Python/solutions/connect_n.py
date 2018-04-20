@@ -40,37 +40,37 @@ class Board:
             self.board[y][x] = token
 
     def calc_winner(self):
-        # check horizontal wins
         for i in range(self.DEPTH):
-            for j in range(self.WIDTH-self.n+1):
-                chunk = self.board[i][j:j+self.n]
-                if all(item == self.board[i][j] and not type(item) is Player for item in chunk):
-                    return self.board[i][j].name
+            for j in range(self.WIDTH):
+                # check horizontal wins
+                if (j < self.WIDTH - self.n + 1):
+                    chunk = self.board[i][j:j+self.n]
+                    if all(item == self.board[i][j] and not type(item) is Player for item in chunk):
+                        return self.board[i][j].name
 
-        # check vertical wins
-        for j in range(self.WIDTH):  
-            for i in range(self.DEPTH-self.n+1):  
-                chunk = [self.board[i+k][j] for k in range(self.n)]
-                if all(item == self.board[i][j] and not type(item) is Player for item in chunk):
-                    return self.board[i][j]
+                # check vertical wins
+                if (i < self.DEPTH - self.n + 1):
+                    chunk = [self.board[i+k][j] for k in range(self.n)]
+                    if all(item == self.board[i][j] and not type(item) is Player for item in chunk):
+                        return self.board[i][j]
 
-        # check diagonal wins
-        for i in range(self.DEPTH-self.n+1):
-            for j in range(self.WIDTH-self.n+1):
-                chunk = [self.board[i+k][j:j+self.n] for k in range(self.n)]
-                left_diag = True
-                right_diag = True
-                for k in range(self.n):
-                    if not left_diag and not right_diag :
-                        continue
-                    if chunk[k][k] != chunk[0][0] or not type(chunk[k][k]) is Player:
-                        left_diag = False
-                    if chunk[self.n-k-1][k] != chunk[self.n-1][0] or not type(chunk[self.n-k-1][k]) is Player:
-                        right_diag = False
-                if left_diag:
-                    return chunk[0][0]
-                if right_diag:
-                    return chunk[self.n-1][0]
+
+                # check diagonal wins
+                if (i < self.DEPTH - self.n + 1 and j < self.WIDTH - self.n + 1):
+                    chunk = [self.board[i+k][j:j+self.n] for k in range(self.n)]
+                    left_diag = True
+                    right_diag = True
+                    for k in range(self.n):
+                        if not left_diag and not right_diag :
+                            continue
+                        if chunk[k][k] != chunk[0][0] or not type(chunk[k][k]) is Player:
+                            left_diag = False
+                        if chunk[self.n-k-1][k] != chunk[self.n-1][0] or not type(chunk[self.n-k-1][k]) is Player:
+                            right_diag = False
+                    if left_diag:
+                        return chunk[0][0]
+                    if right_diag:
+                        return chunk[self.n-1][0]
 
     def is_full(self):
         for row in self.board:

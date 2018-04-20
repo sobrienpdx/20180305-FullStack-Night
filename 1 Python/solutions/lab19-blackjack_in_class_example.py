@@ -40,4 +40,3 @@ if __name__ == '__main__':
 
 		if play_again in ['no', 'n']:
 			break
-
