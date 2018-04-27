@@ -1,0 +1,56 @@
+html, body {
+    margin: auto;
+    font-family: Orbitron;
+    text-align: center;
+}
+
+.calculator-body {
+    margin: 0.5em;
+    min-width: 300px;
+    max-width: 500px;
+    min-height: 600px;
+    max-height: 1000px;
+    background-color: darkgray;
+    border-radius: 25px;
+    padding: 1.5em;
+}
+
+.calculator {
+    margin: 1em;
+}
+
+.calc-title {
+    font-size: 1em;
+    margin-bottom: 1em;
+}
+
+.output-display {
+    margin: auto;
+    width: 100%;
+    min-height: 75px;
+    background-color: lightgrey;
+    padding: 0.5em;
+    margin-bottom: 1.2em;
+    text-align: right;
+}
+
+.calc-btn {
+    min-width: 50px;
+    max-width: 100%;
+    height: 80%;
+    margin-bottom: 2em;
+}
+
+.eq-col {
+    height: 100%;
+    padding-bottom: 1em;
+}
+
+#op-eq {
+    height: 100%;
+}
+
+#digit-0 {
+    min-width: 100%;
+    max-width: 100%;
+}
