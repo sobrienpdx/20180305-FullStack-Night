@@ -41,6 +41,14 @@ html, body {
     margin-bottom: 1.75em;
 }
 
+.calc-btn:hover {
+    opacity: 0.8;
+}
+
+.calc-btn:active {
+    transform: translateY(2px);
+}
+
 .op-btn {
     font-size: 1.2em;
 }
