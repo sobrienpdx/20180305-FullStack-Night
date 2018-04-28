@@ -1,6 +1,6 @@
 $(function() {
     var op = ['+', '-', '÷', '/', '×', 'x', '*'];
-    var lhs = [0];
+    var lhs = [];
     var ans = 0;
     var display = $('.output-display');
     
