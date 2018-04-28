@@ -3,22 +3,20 @@ html, body {
     font-family: Orbitron;
     text-align: center;
     background: black;
+    padding: 2em;
 }
 
 .calculator-body {
-    margin: 0.5em;
+    margin: auto;
     min-width: 300px;
     max-width: 500px;
     min-height: 600px;
     max-height: 1000px;
     background-color: darkgray;
     border-radius: 25px;
-    padding: 1.5em;
+    padding: 2.7em;
 }
 
-.calculator {
-    margin: 1em;
-}
 
 .calc-title {
     font-size: 1em;
@@ -40,7 +38,11 @@ html, body {
     min-width: 50px;
     max-width: 100%;
     height: 80%;
-    margin-bottom: 2em;
+    margin-bottom: 1.75em;
+}
+
+.op-btn {
+    font-size: 1.2em;
 }
 
 .eq-col {
@@ -55,4 +57,9 @@ html, body {
 #digit-0 {
     min-width: 100%;
     max-width: 100%;
+}
+
+#op-ac, #op-ce {
+    background-color: darkred;
+    color: white;
 }
