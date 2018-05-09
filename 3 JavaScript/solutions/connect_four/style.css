@@ -1,0 +1,63 @@
+
+body {
+    width: 100%;
+    padding: 10%;
+}
+
+#game {
+    margin: auto;
+    width: 450px;
+    height: 385px;
+    background: blue;
+    border-radius: 25px;
+    text-align: center;
+}
+
+#board {
+    width: 100%;
+    height: 100%;    
+    flex-flow: column wrap;
+    min-width: 420px;
+}
+
+.board-cell {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+/*
+#game-over {
+    all: inherit;
+    visibility: hidden;
+    background: black;
+    opacity: 0.8;
+    position: absolute !important;
+    margin: 0 auto !important;
+    top: inherit !important;
+    z-index: 100;
+}
+*/
+
+#new-game {
+    margin: auto;
+    display: inline-block;
+}
+
+.board-cell {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.board-cell:hover {
+    background: RGBA(255,255,255,0.3);
+    border-radius: 50px;
+}
+
+.token {
+    width: 100%;
+    border-radius: 50px;
+}
