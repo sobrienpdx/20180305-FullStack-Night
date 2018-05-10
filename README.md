@@ -45,6 +45,9 @@ M-F 6:00PM – 9:30PM
     - https://www.freecodecamp.org/ (Practice, projects, (almost) textbook all-in-one!)
     - https://learnxinyminutes.com/docs/javascript/
     - https://sass-lang.com/guide (SASS: CSS preprocessor tutorial)
+    - https://vuejs.org/v2/guide/ (Vue.js official guide)
+    - https://www.youtube.com/watch?v=5LYrN_cAJoA&list=PL4cUxeGkcC9gQcYgjhBoeQH7wiAyZNrYa (Vue.js video tutorial)
+      REPO: https://github.com/iamshaunjp/vuejs-playlist/tree/master
     
 - Django:
     - https://tutorial.djangogirls.org/
