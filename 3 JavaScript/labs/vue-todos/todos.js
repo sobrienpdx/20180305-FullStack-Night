@@ -10,10 +10,13 @@ var app = new Vue({
     },
     methods: {
         addTodo: function() {
+            // add todo to this.todos
         },
         removeTodo: function(index) {
+            // remove todo from this.todos
         },
         markDone: function(index) {
+            // mark todo as done
         },
     },
 });
