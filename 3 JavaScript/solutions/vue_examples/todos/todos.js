@@ -12,20 +12,11 @@ $(function(){
         },
         methods: {
             addTodo: function() {
-                this.todos.unshift({'todo': this.todo, 'completed': false});
-                this.todo = '';
             },
             removeTodo: function(index) {
-                this.todos.splice(index, 1);
             },
             markDone: function(index) {
-                let todo = this.todos.splice(index, 1)[0];
-                todo.completed = !todo.completed;
-                todo.completed ? this.todos.push(todo) : this.todos.unshift(todo);
             },
-        },
-        computed: {
-            
         },
     });
     
