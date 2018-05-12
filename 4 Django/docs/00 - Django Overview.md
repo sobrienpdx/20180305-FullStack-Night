@@ -16,7 +16,7 @@ Django is a back-end framework written in Python. Django is a **high-level frame
 
 For comparison, [Flask](http://flask.pocoo.org/) is also a Python-based back-end framework, but whereas Django is high-level, Flask is low-level, meaning you're only given the most barebones functionality and have to do everything else yourself. Again, it's a balance of convenience and control. You can read more about Django [here](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django), [here](https://en.wikipedia.org/wiki/Django_(web_framework)), and [here](https://tutorial.djangogirls.org/en/django/).
 
-The core of Django is the [Resquest response cycle](django_request_response_cycle.png). A request is received by the server, it follows a **route**, actives a **view**, which then uses **models** and a **template** to generate a **response**, which is then rendered in the user's browser. The following docs will cover each of these topics in turn, but bear in mind that they're all interdependent.
+The core of Django is the [request-response cycle](django_diagram.png). A request is received by the server, it follows a **route**, actives a **view**, which then uses **models** and a **template** to generate a **response**, which is then rendered in the user's browser. The following docs will cover each of these topics in turn, but bear in mind that they're all interdependent.
 
 - Route: a mapping between a URL and a view, uses regex
 - View: a Python function which receives a request (url, parameters) and creates a response (html)

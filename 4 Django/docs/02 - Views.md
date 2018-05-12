@@ -1,7 +1,7 @@
 
 # Views
 
-**Views** are python functions that are executed when a request follows a route. The view can then respond with HTML, JSON, etc. An app's views are contained in its `views.py` file. You can read more about views [here](https://docs.djangoproject.com/en/1.11/topics/http/views/) and [here](https://docs.djangoproject.com/en/1.11/ref/request-response/).
+**Views** are python functions that are executed when a request follows a route. The view can then respond with HTML, JSON, etc. An app's views are contained in its `views.py` file. You can read more about views [here](https://docs.djangoproject.com/en/2.0/topics/http/views/) and [here](https://docs.djangoproject.com/en/2.0/ref/request-response/).
 
 
 ## Requests
@@ -18,16 +18,16 @@ The request object received by the view contains lots of important information.
 
 ### Path Parameters
 
-Path parameters must be 'captured' in the regular expression of the path. These are called 'named capture groups'. These values then become parameters to the view.
+You can specify parameters in the path using a datatype (`int`, `str`) and a name. Those values will then be automatically taken out of the path and passed as parameters to the view function.
 
 ##### urls.py
 ```python
-from django.conf.urls import url
+from django.conf.urls import path
 from . import views
 app_name = 'todoapp'
 urlpatterns = [
     # e.g. /detail/5, /detail/23
-    url(r'^detail/(?P<todo_item_id>[0-9]+)/$', views.detail, name='detail')
+    path('detail/<int:todo_item_id>/', views.detail, name='detail')
 ]
 ```
 
