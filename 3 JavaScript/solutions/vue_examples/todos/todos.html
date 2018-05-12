@@ -16,9 +16,7 @@
         <h1>{{ message }}</h1>
       
         <div class="holder">
-            <form @submit.prevent="addTodo">
-            <input type="text" placeholder="Enter a task you have..." v-model="todo" name="todo" />
-            </form>            
+            <input type="text" v-on:keyup.enter="addTodo" placeholder="Enter a task you have..." v-model="todo" name="todo" />
             <ul>
                 <li 
                     v-for="(item, index) in todos" :key='index'
