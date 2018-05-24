@@ -1,0 +1,49 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Todos</title>
+      
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'todovue/css/todos.css' %}">
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-resource@1.5.1/dist/vue-resource.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+  </head>
+
+  <body>
+    <div id="app">
+        <h1>${ message }</h1>
+      
+        <div class="holder">
+            <form id="todo-form" @submit.prevent="addTodo">
+                <input type="text" placeholder="Enter a task you have..." v-model="todo" name="todo" required />
+                <input type="submit" value="add" style="display: none"/>
+                <ul>
+                    <li 
+                        v-for="(todo, index) in todos" :key='index'
+                        v-bind:class="{completed: todo.completed}"
+                        v-bind:index="index"
+                        v-bind:item="todo.text"
+                        v-bind:key="todo.id">
+                        ${ todo.text }
+                        <i class="fa fa-times" v-on:click="removeTodo(todo.id)"></i>
+                        <i v-if="!todo.completed" class="fa fa-check" v-on:click="markDone(todo.id)"></i>
+                        <i v-else class="fa fa-undo" v-on:click="markDone(todo.id, todo.completed)"></i>
+                    </li>
+                </ul>
+            </form>
+            {# <div class="loading" v-if="loading===true">Loading&#8230;</div> #}
+        </div>
+        
+    </div>
+      
+    <script src="{% static 'todovue/js/todos.js' %}"></script>
+  </body>
+
+</html>
