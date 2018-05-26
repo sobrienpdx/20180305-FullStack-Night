@@ -24,7 +24,7 @@
 - Add an `app_name` to be able to look up paths when you render a template
 
 ```python
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
 app_name = '<app name>'
