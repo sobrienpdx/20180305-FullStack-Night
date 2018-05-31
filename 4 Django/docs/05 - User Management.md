@@ -22,7 +22,7 @@ You can also create users from within the admin panel, by clicking 'add' next to
 
 ### Accessing Groups and Permissions
 
-The `User` model has two many-to-many fields: groups and permissions. You can access these on the User object using the ORM. Note that `user_permissions` only include permissions assigned to that individual user, and not permissions that user has as part of a group. However, `has_perm` will check if the given permission is amony the group.
+The `User` model has two many-to-many fields: groups and permissions. You can access these on the User object using the ORM. Note that `user_permissions` only include permissions assigned to that individual user, and not permissions that user has as part of a group. However, `has_perm` will check if the given permission is among the group.
 
 - `user.groups.set([group_list])` set the groups
 - `user.groups.add(group, group, ...)` add to a group
