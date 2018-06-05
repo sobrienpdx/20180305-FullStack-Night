@@ -28,6 +28,7 @@ Both pages should redirect to the list of blog posts after registering/logging-i
 
 - Comment
     - user: a many-to-one relationship to the User table
+    - blogpost: foreign reference to blogpost
     - body: text of the comment's body
     - timestamp: when the comment was made
 
