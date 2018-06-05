@@ -58,6 +58,9 @@ At this point, you should run the server (`python manage.py runserver`) and go t
 
 - Add a `def __str__(self):` to your model so the admin interface knows how to display it.
 - Make your app visible in the admin panel by registering your models with our app's `admin.py`
+    ```py
+    admin.site.register(Model)
+    ```
 
 ```python
 from django.contrib import admin
