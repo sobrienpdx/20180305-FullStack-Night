@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from .models import Todo
@@ -23,7 +22,7 @@ def add(request):
     todo_text = request.POST['todo']
     todo_item = Todo(text=todo_text)
     todo_item.save()
-    return HttpResponseRedirect(reverse('todosapp:index'))
+    return redirect(reverse('todosapp:index'))
 
 
 def edit(request, pk):

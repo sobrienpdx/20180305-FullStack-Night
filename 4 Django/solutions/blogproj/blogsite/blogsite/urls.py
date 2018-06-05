@@ -1,4 +1,4 @@
-"""todosite URL Configuration
+"""blogsite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -17,10 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-	path('todos/', include('todosapp.urls')),
-    path('todovue/', include('todovue.urls')),
-	path('todousers/', include('todousers.urls')),
-    path('api-auth/', include('rest_framework.urls')),
+	path('', include('blog.urls')),
     path('admin/', admin.site.urls),
-    # path('accounts/', include('django.contrib.auth.urls')),
 ]

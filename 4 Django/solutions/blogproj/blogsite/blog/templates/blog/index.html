@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blog</title>
+</head>
+<body>
+	<ul>
+	{% for post in blog_list %}
+		<li> {{post}} </li>
+	{% endfor %}
+	</ul>
+</body>
+</html>
