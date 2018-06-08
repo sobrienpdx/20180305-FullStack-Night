@@ -12,6 +12,23 @@ class BlogList(ListView):
     queryset = BlogPost.objects.all().order_by('-timestamp')
     template_name = 'blog/index.html'
 
+class BlogDetail(DetailView):
+    model = BlogPost
+    template_name = 'blog/detail.html'
+
+    # Extend get_object() to include comments associated with the post
+    def get_object(self):
+        post = super().get_object()
+        comments = Comment.objects.filter(blogpost=post)
+        post.comments = comments
+        return post
+
+# Equivalent behavior as class based view above
+def blog_detail(request, pk):
+    post = get_object_or_404(BlogPost, pk=pk)
+    comments = Comment.objects.filter(blogpost=post)
+    return render(request, 'blog/detail.html', {'blogpost': post, 'comments': comments})
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -30,4 +47,4 @@ def signup(request):
             return redirect('blog:index')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})  
+    return render(request, 'registration/signup.html', {'form': form})

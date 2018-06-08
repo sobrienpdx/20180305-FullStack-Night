@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+{% block head_css_section %}
+    <link rel="stylesheet" href="{% static 'todousers/css/todos.css' %}">
+{% endblock head_css_section %}
+
+
+{% block content %}
+    <div id="app">
+        {% if user.is_authenticated %}    
+            <h1>{{user.username}}'s Todos</h1>
+        {% else %}
+            <h1>Todos</h1>
+        {% endif %}
+      
+        <div class="holder">
+            {% if user.is_authenticated %}
+                <form action="{% url 'todousers:add' %}" method="post">
+                    {% csrf_token %}                
+                    <input id="todo" name="todo" type="text" placeholder="Enter a task you have..." pattern=".{1,250}" required title="Please enter a todo between 1 and 250 characters"/>
+                    <input type="submit" value="add" style="display: none"/>
+                </form>            
+                <ul>
+                    {% for todo in todo_list %}
+                        <li {% if todo.completed %} class="completed" {% endif %}>
+                            {{ todo }}
+                            <a href="{% url 'todousers:delete' pk=todo.pk %}"><i class="fa fa-times"></i></a>
+                            {% if not todo.completed %}
+                                <a href="{% url 'todousers:mark' pk=todo.pk %}"><i class="fa fa-check"></i></a>
+                            {% else %}
+                                <a href="{% url 'todousers:mark' pk=todo.pk %}"> <i class="fa fa-undo"></i></a> 
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <ul>
+                    Please login or sign up to view your todo list.
+                </ul>
+            {% endif %}
+        </div>
+        
+    </div>
+{% endblock %}

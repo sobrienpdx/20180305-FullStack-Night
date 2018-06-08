@@ -5,6 +5,8 @@ import blog.views as views
 app_name = 'blog'
 urlpatterns = [
     path('', views.BlogList.as_view(), name='index'),
+    # path('post/<int:pk>', views.BlogDetail.as_view(), name='detail'),
+    path('post/<int:pk>', views.blog_detail, name='detail'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/', views.signup, name='signup'),        

@@ -6,7 +6,13 @@
 <body>
 	<ul>
 	{% for post in blog_list %}
-		<li> {{post}} </li>
+		<li> 
+			<a href={% url 'blog:detail' post.pk %}>
+				{{post.title}}
+			</a>
+			{{post.body}}
+			by {{post.user}} at {{post.timestamp}}
+		</li>
 	{% endfor %}
 	</ul>
 </body>
