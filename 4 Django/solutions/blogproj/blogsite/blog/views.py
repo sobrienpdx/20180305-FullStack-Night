@@ -12,6 +12,7 @@ class BlogList(ListView):
     queryset = BlogPost.objects.all().order_by('-timestamp')
     template_name = 'blog/index.html'
 
+
 class BlogDetail(DetailView):
     model = BlogPost
     template_name = 'blog/detail.html'
@@ -23,11 +24,13 @@ class BlogDetail(DetailView):
         post.comments = comments
         return post
 
+
 # Equivalent behavior as class based view above
 def blog_detail(request, pk):
     post = get_object_or_404(BlogPost, pk=pk)
     comments = Comment.objects.filter(blogpost=post)
     return render(request, 'blog/detail.html', {'blogpost': post, 'comments': comments})
+
 
 def signup(request):
     if request.method == 'POST':

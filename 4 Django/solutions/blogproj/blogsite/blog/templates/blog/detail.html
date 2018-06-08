@@ -8,12 +8,14 @@
 	<h3>By {{blogpost.user}} at {{blogpost.timestamp}}</h3>
 	<p>{{blogpost.body}}</p>
 
-	<h2>Comments:</h2>
-	{% for comment in comments %}
-		<li>
-			{{comment}}
-			By {{comment.user}} at {{comment.timestamp}}
-		</li>
-	{% endfor %}
+	{% if comments %}
+		<h2>Comments:</h2>
+		{% for comment in comments %}
+			<li>
+				{{comment}}
+				By {{comment.user}} at {{comment.timestamp}}
+			</li>
+		{% endfor %}
+	{% endif %}
 </body>
 </html>
