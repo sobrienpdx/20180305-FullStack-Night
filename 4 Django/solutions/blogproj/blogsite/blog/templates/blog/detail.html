@@ -8,14 +8,17 @@
 	<h3>By {{blogpost.user}} at {{blogpost.timestamp}}</h3>
 	<p>{{blogpost.body}}</p>
 
+	<h2>Comments:</h2>
+	<button onclick="location.href='{% url 'blog:add_comment' blogpost.pk %}'">Add Comment</button>
 	{% if comments %}
-		<h2>Comments:</h2>
 		{% for comment in comments %}
 			<li>
 				{{comment}}
 				By {{comment.user}} at {{comment.timestamp}}
 			</li>
 		{% endfor %}
+	{% else %}
+		<p>No comments</p>
 	{% endif %}
 </body>
 </html>

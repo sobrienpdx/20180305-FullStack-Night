@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse
 from django.views.generic import ListView, DetailView
 from .models import BlogPost, Comment
+from .forms import BlogPostForm, CommentForm
 
 class BlogList(ListView):
     context_object_name = 'blog_list'
@@ -30,6 +31,37 @@ def blog_detail(request, pk):
     post = get_object_or_404(BlogPost, pk=pk)
     comments = Comment.objects.filter(blogpost=post)
     return render(request, 'blog/detail.html', {'blogpost': post, 'comments': comments})
+
+
+@permission_required('BlogPost.can_add', 'blog:login')
+def add_post(request):
+    if request.method=='POST':
+        form = BlogPostForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            body = form.cleaned_data['body']
+            user = get_object_or_404(User, pk=request.user.pk)
+            post = BlogPost(title=title, body=body, user=user)
+            post.save()
+            return redirect('blog:index')
+    else:
+        form = BlogPostForm()
+    return render(request, 'blog/add_post.html', {'form': form})
+
+@permission_required('Comment.can_add', 'blog:login')
+def add_comment(request, blog_pk):
+    if request.method=='POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            body = form.cleaned_data['comment_body']
+            user = get_object_or_404(User, pk=request.user.pk)
+            post = get_object_or_404(BlogPost, pk=blog_pk)
+            comment = Comment(body=body, user=user, blogpost=post)
+            comment.save()
+            return redirect('blog:detail', pk=blog_pk)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment.html', {'form': form, 'blog_pk':blog_pk})    
 
 
 def signup(request):
