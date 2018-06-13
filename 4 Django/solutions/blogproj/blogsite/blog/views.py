@@ -1,12 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse
 from django.views.generic import ListView, DetailView
 from .models import BlogPost, Comment
-from .forms import BlogPostForm, CommentForm
+from .forms import CommentForm, BlogPostForm
+
+def isPoster(user):
+    return user.groups.filter(name='Posters').exists()
+
+
+def isCommenter(user):
+    return isPoster(user) or user.groups.filter(name='Commenters').exists()
+
 
 class BlogList(ListView):
     context_object_name = 'blog_list'
@@ -33,7 +41,8 @@ def blog_detail(request, pk):
     return render(request, 'blog/detail.html', {'blogpost': post, 'comments': comments})
 
 
-@permission_required('BlogPost.can_add', 'blog:login')
+@user_passes_test(isPoster, 'blog:login')
+# @permission_required('BlogPost.can_add', 'blog:login')
 def add_post(request):
     if request.method=='POST':
         form = BlogPostForm(request.POST)
@@ -48,7 +57,9 @@ def add_post(request):
         form = BlogPostForm()
     return render(request, 'blog/add_post.html', {'form': form})
 
-@permission_required('Comment.can_add', 'blog:login')
+
+@user_passes_test(isCommenter, 'blog:login')
+# @permission_required('Comment.can_add', 'blog:login')
 def add_comment(request, blog_pk):
     if request.method=='POST':
         form = CommentForm(request.POST)

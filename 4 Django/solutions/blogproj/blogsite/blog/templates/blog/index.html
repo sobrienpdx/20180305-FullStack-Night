@@ -4,6 +4,7 @@
 	<title>Blog</title>
 </head>
 <body>
+	<button onclick="location.href='{% url 'blog:add_post' %}'">Add post</button>
 	<ul>
 	{% for post in blog_list %}
 		<li> 
