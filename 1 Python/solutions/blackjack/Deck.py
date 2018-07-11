@@ -24,7 +24,6 @@ class Deck(object):
         #     for rank in self.ranks:
         #         self.cards.append(Card(rank, suit))
 
-
     def __len__(self):
         return len(self._cards)
 
@@ -41,10 +40,13 @@ class Deck(object):
         # else:
         #     return None
  
+    def __repr__(self):
+        output = ''
+        for card in self._cards:
+            output += str(card) + '\n'
+        return output 
 
 class FrenchDeck(Deck):
-
-
     def __init__(self):
         super(FrenchDeck, self).__init__()
         self.card_value = [Card(rank, suit) for rank in self.ranks
@@ -55,18 +57,19 @@ class FrenchDeck(Deck):
         card = super(FrenchDeck, self).deal()
         return (card, self.card_value.index(card)+1)
 
-
 if __name__ == '__main__':
     my_deck = Deck()
-    print(len(my_deck)) # return 52
-    print(my_deck[-1])
-    print(my_deck.deal())
-    print(my_deck[-1])
-    print(len(my_deck))
+    # print(len(my_deck)) # return 52
+    # print(my_deck[-1])
+    # print(my_deck.deal())
+    # print(my_deck[-1])
+    # print(len(my_deck))
+    my_deck.shuffle()
+    print(my_deck)
 
-    french_deck = FrenchDeck()
-    for i in range(len(french_deck)):
-        print(i, french_deck[i])
+    # french_deck = FrenchDeck()
+    # for i in range(len(french_deck)):
+    #     print(i, french_deck[i])
     # print(len(french_deck)) # return 52
     # print(french_deck[-1])
     # print(french_deck.deal())

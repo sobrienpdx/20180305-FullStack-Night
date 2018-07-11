@@ -25,10 +25,10 @@ O|X|O
  | | 
 ```
 
-* `place_token(x, y, token)` Place a token character string at a given coordinate (top-left is 0, 0), x is horizontal position, y is vertical position.
+* `move(x, y, player)` Place a player's token character string at a given coordinate (top-left is 0, 0), x is horizontal position, y is vertical position.
 
 ```py
->>> board.place_token(2, 1, 'X')
+>>> board.move(2, 1, player_1)
  | | 
  | |X
  | | 
@@ -46,7 +46,7 @@ X
 
 * `is_full()` Returns true if the game board is full.
 
-```
+```py
 X|O|X
 X|X|O
 O|O|X
@@ -56,11 +56,17 @@ True
 
 * `is_game_over()` Returns true if the game board is full or a player has won.
 
-```
+```py
 X|O|X
 X|X|O
 O|O|X
 >>> board.is_game_over()
 True
+
+X|O|
+ | |X
+ | |
+>>> board.is_game_over()
+False
 ```
 

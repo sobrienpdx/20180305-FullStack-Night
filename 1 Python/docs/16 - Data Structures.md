@@ -9,7 +9,7 @@ Lists are known as “arrays” in most other languages. A list is a simple cont
 Example:
 
 ```py
-supercar_makes = ['McLaren', 'Bugatti', 'Koenigsegg', 'Lamborghini', 'Ferrari', 'Aston Martin']
+supercar_makes = ['McLaren', 'Bugatti', 'Maserati', 'Lamborghini', 'Ferrari', 'Aston Martin']
     
 mixed_data = ['a string', 42, {'a':'dictionary'}]
 ```
@@ -142,13 +142,13 @@ Simple Python queue implementation (uses lists):
 ```py
 class Queue:
     def __init__(self):
-        self.stack = []
+        self.queue = []
 
     def enqueue(self, item):
-        self.stack.append(item)
+        self.queue.append(item)
 
     def dequeue(self, item):
-        return self.stack.pop(0)
+        return self.queue.pop(0)
 
 # Alternatively, you can just implement a queue using a list and only appending to end and popping from the front.
 
