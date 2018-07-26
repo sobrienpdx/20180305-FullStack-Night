@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fibonacci</title>
+</head>
+<body>
+	<h1>Fibonacci Calculator</h1>
+    <label for="fibonacci-n">Enter the Nth fibonacci number your want to calculate:</label>
+    <input type="number" id="fibonacci-n" name="fibonacci-n" required
+           min="0" placeholder="Min 0" />
+    <input type="submit" id="calc-btn" value="Calculate" />
+    <input type="submit" id="add-one" value="Add one" />
+	<h2 id='answer'>Answer:</h2>
+	<script>
+		let memo = [1,1]
+		function fibonacci(n) {
+			if (n < memo.length) {
+				return memo[n]
+			} else {
+				let fibN = fibonacci(n-1) + fibonacci(n-2)
+				memo[n] = fibN 
+				return fibN
+			}
+		}
+
+		function calculate() {
+			let n = document.getElementById('fibonacci-n').value
+			console.log(`So far ${memo.length} Fibonacci numbers calculated.`)
+			let fibN = fibonacci(parseInt(n))
+			let answer = document.getElementById('answer')
+			answer.innerText = fibN
+			return fibN + 1
+		}
+
+
+		document.getElementById('calc-btn').addEventListener("click", function(evt) {		
+			calculate()
+		});
+
+		document.getElementById('fibonacci-n').addEventListener("keypress", function(evt) {	
+			if (evt.key === 'Enter') {
+				calculate()
+			}
+		});
+
+		document.getElementById('add-one').addEventListener("click", function(evt) {	
+			answer.innerText += ' + 1 = ' + calculate()
+		});
+
+
+	</script>
+</body>
+</html>

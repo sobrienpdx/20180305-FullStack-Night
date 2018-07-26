@@ -154,7 +154,6 @@ $(function () {
 
                 if (game.isGameOver()) {
                     $('#game-over').show();
-                    $('#game').css({'z-index':100, 'background':'black', 'opacity':0.8})
                     $('#new-game').show();
                     if (game.hasWon()) {
                         console.log(`Game over! ${currentPlayer} wins!`);
@@ -171,11 +170,11 @@ $(function () {
     });
     
     $('#new-game').on('click', function(event) {
+        $('#game-over').hide();
         game = new GameBoard();
         initGameBoard(boardDiv, game);
         gameRound = 1;
         currentPlayer = getCurrentPlayer(gameRound);
-        $('#game').css('background', 'blue');
         $('.board-cell').css('background', 'none');
     });
 });
