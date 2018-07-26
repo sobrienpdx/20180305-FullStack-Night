@@ -108,21 +108,71 @@
 	<script>
 		// Todos class
 		class Todos {
-			constructor() {
-				this.todos = []
+			constructor(container, todos=[]) {
+				this.container = container
+				this.todos = todos
+				for (let i=0; i<todos.length; i++) {
+					this.display(todos[i])
+				}
 			}
 			add(todo) {
+				todo = {'text': todo, 'completed': false}
 				this.todos.push(todo)
+				this.display(todo)			
 			}
 			remove(todo) {
-				let idx = this.todos.indexOf(todo)
+				let idx = this.todos.findIndex(todoItem => todoItem.text == todo)
 				this.todos.splice(idx, 1)
 			}
-		}
+			markDone(todo) {
+				let idx = this.todos.findIndex(todoItem => todoItem.text == todo)
+				this.todos[idx].completed = true
+			}
+			display(todo) {
+				let todoItem = document.createElement('li')
+				// create remove and markDone buttons
+				let removeBtn = document.createElement('i')
+				let markDoneBtn = document.createElement('i')
+				markDoneBtn.classList.add('fa','fa-check')
+				removeBtn.classList.add('fa','fa-times')
+				todoItem.innerHTML = todo.text
+				if (todo.completed) {
+					todoItem.classList.add('completed')
+				}
+				todoItem.appendChild(markDoneBtn)
+				todoItem.appendChild(removeBtn)
+				newTodoArea.value = ''
+				this.container.appendChild(todoItem)
+
+				// add event listener to each button
+				markDoneBtn.addEventListener('click', (evt) => {
+					let todo = evt.target.closest('li')
+					todoList.markDone(todo.innerText)
+					todo.classList.toggle('completed')
+				})
+
+				removeBtn.addEventListener('click', (evt) => {
+					let todo = evt.target.parentElement
+					todoList.remove(todo.innerText)
+					this.container.removeChild(todo)
+				})		
+			}
+		}				
 
 		let newTodoArea = document.getElementById('todo-input')
 		let todoListArea = document.getElementById('todo-list')
-		let todoList = new Todos()
+		let todoList = null
+
+		window.addEventListener('DOMContentLoaded', (evt) => {
+			let todos = JSON.parse(localStorage.getItem('todos'))
+			if (todos) {
+				todoList = new Todos(todoListArea, todos)
+
+			} else {
+				todoList = new Todos(todoListArea)
+			}
+		})
+
 
 		// Create new todo and add to todoList when the user hits enter
 		newTodoArea.addEventListener('keypress', (evt) => {
@@ -130,36 +180,14 @@
 				let todo = newTodoArea.value
 				if (todo) { // if todo is not an empty string
 					todoList.add(todo) // add todo to todoList
-					// create todo item DOM element
-					let todoItem = document.createElement('li')
-					// create remove and markDone buttons
-					let removeBtn = document.createElement('i')
-					let markDoneBtn = document.createElement('i')
-					markDoneBtn.classList.add('fa','fa-check')
-					removeBtn.classList.add('fa','fa-times')
-					todoItem.innerHTML = todo
-					todoItem.appendChild(markDoneBtn)
-					todoItem.appendChild(removeBtn)
-					newTodoArea.value = ''
-					todoListArea.appendChild(todoItem)
-
-					// add event listener to each button
-					markDoneBtn.addEventListener('click', (evt) => {
-						let todo = evt.target.closest('li')
-						todo.classList.toggle('completed')
-					})
-					removeBtn.addEventListener('click', (evt) => {
-						let todo = evt.target.parentElement
-						todoList.remove(todo.innerText)
-						todoListArea.removeChild(todo)
-					})		
-				}
+				}			
 			}
 		})
 
-		// window.addEventListener('beforeunload', (evt) => {
-		// 	localStorage.setItem('todos': todoList)
-		// })
+		window.addEventListener('beforeunload', (evt) => {
+			let todoListToJSON = JSON.stringify(todoList.todos)
+			localStorage.setItem('todos', todoListToJSON)
+		})
 
 
 	</script>
