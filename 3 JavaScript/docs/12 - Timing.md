@@ -60,15 +60,16 @@ To have code called 'as often as possible' without locking up the entire page, y
 
 
 ```html
-<div id="moving_div"></div>
+<div id="moving_div">Moving</div>
 <script>
     let moving_div = document.getElementById('moving_div');
     moving_div.style.position = 'absolute';
     moving_div.style.left = 0;
     moving_div.style.top = 0;
     function animation_step() {
-        moving_div.style.left += 0.1;
-        if (moving_div.style.left < 100) {
+        let left = parseInt(moving_div.style.left)
+        moving_div.style.left = left + 1 + 'px';
+        if (left < 500) {
             window.requestAnimationFrame(animation_step);
         }
     }
