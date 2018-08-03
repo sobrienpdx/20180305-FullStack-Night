@@ -50,7 +50,7 @@ fetch('https://api.ipify.org/?format=json')
   })
   .then(function(myJson) {
     console.log(myJson);
-  });
+  })
   .catch(error => console.error(error));  
 ```
 This is a basic `GET` request sent to `https://api.ipify.org/?format=json`. `fetch()` uses JS **Promises** to handle processing the request asynchronously. Any `.then(callback)` calls make sure to only process the callback after the previous function has been completed. `.catch(callback)` handles any errors returned from the request. The simplest use of  `fetch()` takes one argument — the path to the resource you want to fetch — and returns a Promise containing the response (a Response object).
