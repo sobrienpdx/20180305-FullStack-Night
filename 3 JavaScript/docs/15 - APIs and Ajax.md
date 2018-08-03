@@ -39,7 +39,53 @@ The response to an HTTP request will have a **status code** which indicates whet
 AJAX stands for "asynchronous javascript and XML", and allows you to execute HTTP requests from JavaScript. You can read more about AJAX [here](https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started), [here](https://developer.mozilla.org/en-US/docs/AJAX) and [here](https://www.w3schools.com/xml/ajax_intro.asp).
 
 
-Here's how to execute an AJAX request in native JavaScript. You can read more about XMLHttpRequest [here](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest). Remember status 200 means 'success'.
+## Fetch and ES6 Promises
+[Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) provides a newer, easier-to-use method to send HTTP requests and process their responses compared to `XMLHttpRequest`.
+
+Here's how to send a `GET` request and process it into JSON:
+```js 
+fetch('https://api.ipify.org/?format=json')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(myJson);
+  });
+  .catch(error => console.error(error));  
+```
+This is a basic `GET` request sent to `https://api.ipify.org/?format=json`. `fetch()` uses JS **Promises** to handle processing the request asynchronously. Any `.then(callback)` calls make sure to only process the callback after the previous function has been completed. `.catch(callback)` handles any errors returned from the request. The simplest use of  `fetch()` takes one argument — the path to the resource you want to fetch — and returns a Promise containing the response (a Response object).
+
+### Request options
+The fetch() method can optionally accept a second parameter, an object that allows you to control a number of different settings. Some common parameters are below with their optional values. You can read more about others [**here**](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch).
+
+- method: [\*GET, POST, PUT, DELETE, etc.]
+- mode: [no-cors, cors, \*same-origin]
+- cache: [\*default, no-cache, reload, force-cache, only-if-cached]
+- credentials: "same-origin", [include, same-origin, \*omit]
+- redirect: [manual, \*follow, error]
+- referrer: "no-referrer", // no-referrer, *client
+- body: The body you want to add to your request (not available for GET or HEAD requests)
+\*Note: Starred options are the default setting.
+
+This example is sending a `POST` request with some form data.
+```js
+let header = new Headers()
+header.append('Authorization', 'Token token="<API key>"')
+let form = new FormData(document.getElementById('todo-data'))
+
+fetch('https://example.com/new/', {
+    method: 'POST',
+    headers: header,
+    body: form
+}).then((response) => console.log(response))
+.catch((err) => console.log(err))
+.then((response) => {
+    console.log('Success!')   
+})
+```
+
+## XMLHttpRequest
+Here's how to execute an AJAX request in native JavaScript. This was the older standard method of sending HTTP requests. You can read more about XMLHttpRequest [here](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest). Remember status 200 means 'success'.
 
 ```javascript
 let xhttp = new XMLHttpRequest();
@@ -48,7 +94,7 @@ xhttp.onreadystatechange = function() {
         console.log(this.responseText);
     }
 };
-xhttp.open("GET", 'https://api.iify.org/?format=json');
+xhttp.open("GET", 'https://api.ipify.org/?format=json');
 xhttp.send();
 ```
 
@@ -84,7 +130,7 @@ It's a little more succinct in jQuery:
 ```javascript
 $.ajax({
     method: "GET", // specify the HTTP Verb
-    url: 'https://api.iify.org/?format=json' // specify the URL
+    url: 'https://api.ipify.org/?format=json' // specify the URL
 }).done(function(data) {
     console.log(data); // log the data we get in response
 }).fail(function() {
@@ -92,7 +138,6 @@ $.ajax({
 });
 ```
 If you receive the response "No 'Access-Control-Allow-Origin' header is present on the requested resource", it's because the remote server you're sending to the request from has security controls in place that prevent access from a client. You can read more about CORS [here](https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe) and [here](https://security.stackexchange.com/questions/108835/how-does-cors-prevent-xss).
-
 
 
 ## JSON + XML

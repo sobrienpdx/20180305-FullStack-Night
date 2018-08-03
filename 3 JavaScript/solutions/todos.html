@@ -126,7 +126,14 @@
 			}
 			markDone(todo) {
 				let idx = this.todos.findIndex(todoItem => todoItem.text == todo)
-				this.todos[idx].completed = true
+				todo = this.todos[idx] 
+				todo.completed = !todo.completed
+				// // equivalent to above
+				// if (todo.completed == true) {
+				// 	todo.completed = false
+				// } else {
+				// 	todo.completed = true
+				// }
 			}
 			display(todo) {
 				let todoItem = document.createElement('li')
@@ -165,17 +172,19 @@
 
 		window.addEventListener('DOMContentLoaded', (evt) => {
 			let todos = JSON.parse(localStorage.getItem('todos'))
-			if (todos) {
-				todoList = new Todos(todoListArea, todos)
+			todoList = (todos ? new Todos(todoListArea, todos) : new Todos(todoListArea))
+			// // Equivalent to above
+			// if (todos) {
+			// 	todoList = new Todos(todoListArea, todos)
 
-			} else {
-				todoList = new Todos(todoListArea)
-			}
+			// } else {
+			// 	todoList = new Todos(todoListArea)
+			// }
 		})
 
 
 		// Create new todo and add to todoList when the user hits enter
-		newTodoArea.addEventListener('keypress', (evt) => {
+		newTodoArea.addEventListener('keypress', function(evt){
 			if (evt.key === 'Enter') {
 				let todo = newTodoArea.value
 				if (todo) { // if todo is not an empty string

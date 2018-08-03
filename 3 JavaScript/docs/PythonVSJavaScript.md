@@ -71,14 +71,22 @@ while (i < 10) {
 
 ## For Loops
 
-In Python, `for` loops are structured very differently:
+In Python, `for` loops look like they are structured very differently, but they really boil down to the same. The `range` function takes *three parameters*: `range(start, end, increment)`. The three Python `for` loops below are actually the same.
 
 ```python
 for i in range(10):
     print(i)
 ```
+```python
+for i in range(0, 10):
+    print(i)
+```
+```python
+for i in range(0, 10, 1):
+    print(i)
+```
 
-The three parts of a JavaScript for loop are the **initialization**, **condition**, and **increment**.
+The three parts of a JavaScript for loop are the **initialization**, **condition**, and **increment** (the three parameters of a Python `range`)
 
 ```javascript
 for (let i=0; i<10; ++i) {
