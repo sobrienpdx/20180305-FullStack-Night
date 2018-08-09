@@ -36,7 +36,7 @@ urlpatterns = [
 - Add a route in your project's `urls.py` which points to the app's `url.py` using `include`
 
 ```python
-from django.conf.urls import path, include
+from django.urls import path, include
 from django.contrib import admin
 
 urlpatterns = [
